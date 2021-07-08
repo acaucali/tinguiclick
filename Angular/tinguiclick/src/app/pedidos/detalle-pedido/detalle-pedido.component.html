@@ -1,0 +1,257 @@
+<div *ngIf="modalservice.modal" class="abrir-modal animacion fadeIn">
+
+    <div *ngIf="modalservice.modal" class="modal my-5" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background-color: #089fd6;">
+                    <h5 class="modal-title">{{titulo}}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form #pedidoForm="ngForm">
+                            
+                            <ul class="nav nav-tabs my-3" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                  <a class="nav-link active" id="datos-tab" data-toggle="tab" href="#datos" role="tab" aria-controls="datos" aria-selected="true"><span style="font-size: medium; color: black;">Datos Básicos</span></a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link " id="cliente-tab" data-toggle="tab" href="#cliente" role="tab" aria-controls="cliente" aria-selected="false"><span style="font-size: medium; color: black;">Datos Cliente</span></a>
+                                </li>
+                               
+                            </ul>
+                            
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="datos" role="tabpanel" aria-labelledby="datos-tab">
+                                    <div class="form-row"> 
+                                                                                
+                                        <div class="form-group col-md-6">
+                                            <label for="detalle" style="font-size: medium">Detalle</label>
+                                            <textarea class="form-control" rows="5" placeholder="Detalle" [(ngModel)]="pedido.detalle" name="detalle"
+                                            maxlength="500"></textarea>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="observacion" style="font-size: medium">Observación</label>
+                                            <textarea class="form-control" rows="5" placeholder="Observación" [(ngModel)]="pedido.observacion" name="observacion"
+                                            maxlength="500"></textarea>
+                                        </div>
+                                        
+                                        <div class="form-group col-md-4">
+                                            <label for="valor" style="font-size: medium">Valor</label>
+                                            <input type="text" class="form-control" placeholder="Valor"
+                                                [(ngModel)]="pedido.valor" name="valor" maxlength="250">
+                                        </div>
+                                                                              
+
+                                        <div class="form-group col-md-4">
+                                            <label for="estado" style="font-size: medium">Estado</label>
+                                            <select class="form-control" name="estado"
+                                            [(ngModel)]="pedido.estado" name="estado" required #estado="ngModel">
+                                                <option [ngValue]="undefined" selected>Seleccionar
+                                                <option [ngValue]="0">Registrado
+                                                <option [ngValue]="1">Asignado
+                                                <option [ngValue]="2">En Camino
+                                                <option [ngValue]="3">Entregado   
+                                                <option [ngValue]="4">Cancelado      
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="tipo" style="font-size: medium">Tipo</label>
+                                            <select class="form-control" name="tipo"
+                                            [(ngModel)]="pedido.tipo" name="tipo" required #tipoUsuario="ngModel">
+                                                <option [ngValue]="undefined" selected>Seleccionar
+                                                <option [ngValue]="0">Restaurante
+                                                <option [ngValue]="1">Click-Favor
+                                                <option [ngValue]="2">Mercado
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="form-group col-md-4">
+                                            <label for="municipio" style="font-size: medium">Municipio</label>
+                                            <select class="form-control" name="municipio"
+                                            [(ngModel)]="pedido.municipio" name="municipio" required #municipio="ngModel">
+                                                <option [ngValue]="undefined" selected>Seleccionar
+                                                <option [ngValue]="0">Funza
+                                                <option [ngValue]="1">Mosquera
+                                                <option [ngValue]="2">Madrid
+                                                <option [ngValue]="3">Otro  
+                                                <option [ngValue]="4">No Aplica     
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="ciudad" style="font-size: medium">Ciudad</label>
+                                            <select class="form-control" name="ciudad"
+                                            [(ngModel)]="pedido.ciudad" name="ciudad" #ciudad="ngModel">
+                                                <option [ngValue]="undefined" selected>Seleccionar
+                                                <option [ngValue]="0">Bogotá
+                                                <option [ngValue]="1">No Aplica    
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="pago" style="font-size: medium">Método Pago</label>
+                                            <select class="form-control" name="pago"
+                                            [(ngModel)]="pedido.metodoPago" name="metodoPago" required #pago="ngModel">
+                                                <option [ngValue]="undefined" selected>Seleccionar
+                                                <option [ngValue]="0">Efectivo
+                                                <option [ngValue]="1">Datafono
+                                                <option [ngValue]="2">Nequi - Daviplata    
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="tipoIdentificacion" style="font-size: medium">Tipo Identificación</label>
+                                            <select  class="form-control "
+                                                [(ngModel)]="domiciliario.tipoIdentificacion" name="tipoIdentificacion" required #tipo="ngModel">
+                                                <option [ngValue]="undefined" selected>
+                                                    Seleccionar
+                                                </option>
+                                                <option *ngFor="let tip of tiposId" [ngValue]="tip.tipoIdentificacionId">
+                                                    {{tip.nombre}}</option>
+                                            </select>
+                                            <div class="alert alert-danger"
+                                                *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
+                                                <div *ngIf="tipo.errors.required">
+                                                    Tipo Identificación es requerida
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="tipoIdentificacion" style="font-size: medium">Tipo Identificación</label>
+                                            <select  class="form-control "
+                                                [(ngModel)]="domiciliario.tipoIdentificacion" name="tipoIdentificacion" #tipo="ngModel">
+                                                <option [ngValue]="undefined" selected>
+                                                    Seleccionar
+                                                </option>
+                                                <option *ngFor="let tip of tiposId" [ngValue]="tip.tipoIdentificacionId">
+                                                    {{tip.nombre}}</option>
+                                            </select>
+                                            
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="tipoIdentificacion" style="font-size: medium">Tipo Identificación</label>
+                                            <select  class="form-control "
+                                                [(ngModel)]="domiciliario.tipoIdentificacion" name="tipoIdentificacion" required #tipo="ngModel">
+                                                <option [ngValue]="undefined" selected>
+                                                    Seleccionar
+                                                </option>
+                                                <option *ngFor="let tip of tiposId" [ngValue]="tip.tipoIdentificacionId">
+                                                    {{tip.nombre}}</option>
+                                            </select>
+                                            <div class="alert alert-danger"
+                                                *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
+                                                <div *ngIf="tipo.errors.required">
+                                                    Tipo Identificación es requerida
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+
+                                        <!--
+                                        <div class="form-group col-md-12" *ngIf="aliado.aliadoId">
+                                            <label for="documento" style="font-size: medium">Documento</label> <br>
+                                            <input (change)="seleccionarDocumento($event)" type="file" name="documento" class="form"
+                                              accept=".xlsx,.xls,.doc, .docx,.ppt,.pptx,.pdf" >
+                                            &nbsp; &nbsp;<button class="btn btn-rounded btn-primary" (click)="subirDocumento()" type="button" placement="bottom"
+                                              ngbTooltip="Subir documento" style="font-size: 8px" ><i class="fas fa-file-upload fa-2x"></i></button>
+                                            &nbsp;
+                                            <div class="form-group" *ngIf="aliado.aliadoId && aliado.documentoId >0">
+                                                <label style="font-size: medium" *ngIf="documento">{{documento.documentoNombre}}</label> &nbsp; &nbsp;
+                                                <button class="btn btn-rounded btn-primary" (click)="descargarDocumento()" type="button" placement="bottom"
+                                                ngbTooltip="Descargar documento" style="font-size: 8px"><i class="fas fa-download fa-2x"></i></button>
+                                                &nbsp;
+                                                <button class="btn btn-rounded btn-danger" (click)="eliminarDocumento()" type="button" placement="bottom"
+                                                ngbTooltip="Eliminar documento" style="font-size: 8px"><i class="far fa-trash-alt fa-2x"></i></button>
+                                      
+                                            </div>
+                                        </div>   
+                                        -->                                     
+                                    </div>    
+                                </div>
+                                <div class="tab-pane fade" id="cliente" role="tabpanel" aria-labelledby="cliente-tab">
+                                    <div class="form-row"> 
+                                        <div class="form-group col-md-6">
+                                            <label for="nombre" style="font-size: medium">Nombre Cliente</label>
+                                            <input type="text" class="form-control" placeholder="Nombre Cliente"
+                                                [(ngModel)]="pedido.nombreCliente" name="nombreCliente" required maxlength="250"
+                                                #nombre="ngModel">
+                                            <div class="alert alert-danger"
+                                                *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                                <div *ngIf="nombre.errors.required">
+                                                    Nombre es requerido
+                                                </div>
+                                            </div>
+                                        </div>  
+                                        
+                                        <div class="form-group col-md-6">
+                                            <label for="apellido" style="font-size: medium">Apellido Cliente</label>
+                                            <input type="text" class="form-control" placeholder="Apellido Cliente"
+                                                [(ngModel)]="pedido.apellidoCliente" name="apellidoCliente" maxlength="250"
+                                                #apellido="ngModel">
+                                        </div> 
+
+                                        <div class="form-group col-md-6">
+                                            <label for="direccion" style="font-size: medium">Dirección Cliente</label>
+                                            <input type="text" class="form-control" placeholder="Dirección Cliente"
+                                                [(ngModel)]="pedido.direccionCliente" name="direccionCliente" required maxlength="250"
+                                                #direccion="ngModel">
+                                            <div class="alert alert-danger"
+                                                *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
+                                                <div *ngIf="direccion.errors.required">
+                                                    Dirección es requerido
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="celular" style="font-size: medium">Celular Cliente</label>
+                                            <input type="number" class="form-control" placeholder="Celular Cliente"
+                                                [(ngModel)]="pedido.numeroCelular" name="numeroCelular" required max="20"
+                                                #celular="ngModel">
+                                            <div class="alert alert-danger"
+                                                *ngIf="celular.invalid && (celular.dirty || celular.touched)">
+                                                <div *ngIf="celular.errors.required">
+                                                    Celular es requerido
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="telefono" style="font-size: medium">Telefono Cliente</label>
+                                            <input type="number" class="form-control" placeholder="Telefono Cliente"
+                                                [(ngModel)]="pedido.telefono" name="telefono"  max="20"
+                                                #telefono="ngModel">
+                                        
+                                        </div>
+
+                                    </div> 
+                                </div>
+                               
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button *ngIf="!pedido.pedidoId else elseBlock" (click)="create()" type="button"
+                        class="btn btn-primary" data-dismiss="modal" [disabled]="!pedidoForm.form.valid">Crear</button>
+                    <ng-template #elseBlock>
+                        <button (click)="update()" type="button" class="btn btn-primary" data-dismiss="modal"
+                            [disabled]="!pedidoForm.form.valid">Actualizar</button>
+                    </ng-template>
+                    <button (click)="cerrarModal()" type="button" class="btn btn-danger"
+                        data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

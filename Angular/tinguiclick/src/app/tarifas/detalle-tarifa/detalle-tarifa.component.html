@@ -1,0 +1,62 @@
+<div *ngIf="modalservice.modal" class="abrir-modal animacion fadeIn">
+
+    <div *ngIf="modalservice.modal" class="modal my-5" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background-color: #089fd6;">
+                    <h5 class="modal-title">{{titulo}}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form #tarifaForm="ngForm">
+                            <div class="form-row"> 
+                                <div class="form-group col-md-6">
+                                    <label for="ubicacion" style="font-size: medium">Ubicación</label>
+                                    <input type="text" class="form-control" placeholder="Ubicación"
+                                        [(ngModel)]="tarifa.ubicacion" name="ubicacion" required maxlength="250"
+                                        #ubicacion="ngModel">
+                                    <div class="alert alert-danger"
+                                        *ngIf="ubicacion.invalid && (ubicacion.dirty || ubicacion.touched)">
+                                        <div *ngIf="ubicacion.errors.required">
+                                            Ubicación es requerido
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group col-md-6">
+                                    <label for="valor" style="font-size: medium">Valor</label>
+                                    <input type="text" class="form-control" placeholder="Valor"
+                                        [(ngModel)]="tarifa.valor" name="valor" required maxlength="250"
+                                        #valor="ngModel">
+                                    <div class="alert alert-danger"
+                                        *ngIf="valor.invalid && (valor.dirty || valor.touched)">
+                                        <div *ngIf="valor.errors.required">
+                                            Valor es requerido
+                                        </div>
+                                    </div>
+                                </div>
+
+                             </div>  
+
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button *ngIf="!tarifa.tarifaId else elseBlock" (click)="create()" type="button"
+                        class="btn btn-primary" data-dismiss="modal" [disabled]="!tarifaForm.form.valid">Crear</button>
+                    <ng-template #elseBlock>
+                        <button (click)="update()" type="button" class="btn btn-primary" data-dismiss="modal"
+                            [disabled]="!tarifaForm.form.valid">Actualizar</button>
+                    </ng-template>
+                    <button (click)="cerrarModal()" type="button" class="btn btn-danger"
+                        data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
