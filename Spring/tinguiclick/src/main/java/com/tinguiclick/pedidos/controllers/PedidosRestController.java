@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tinguiclick.pedidos.model.Pedido;
 import com.tinguiclick.pedidos.service.IPedidosService;
+import com.tinguiclick.service.IAliadosService;
+import com.tinguiclick.service.IDomiciliariosService;
 
 
 
@@ -39,6 +41,11 @@ public class PedidosRestController {
 	@Autowired
 	private IPedidosService pedidosService;
 		
+	@Autowired
+	private IAliadosService aliadosService;
+	
+	@Autowired
+	private IDomiciliariosService domiciliariosService;
 	
 	//Servicios Rest tabla - Tipo Identificacion 
 	
@@ -75,7 +82,7 @@ public class PedidosRestController {
 	
 	//servicio que crea un tipo de identificacion
 	@PostMapping("/pedidos")
-	public ResponseEntity<?> create(@Valid @RequestBody Pedido pedidoN, BindingResult result) {
+	public ResponseEntity<?> create(@Valid @RequestBody Pedido pedidoN, BindingResult result, @PathVariable Long aliadoId,  @PathVariable Long domiciliarioId) {
 		
 		Pedido pedidoNew= null;
 		

@@ -105,52 +105,54 @@
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <label for="tipoIdentificacion" style="font-size: medium">Tipo Identificación</label>
+                                            <label for="tarifa" style="font-size: medium">Tarifa</label>
                                             <select  class="form-control "
-                                                [(ngModel)]="domiciliario.tipoIdentificacion" name="tipoIdentificacion" required #tipo="ngModel">
+                                                [(ngModel)]="pedido.tarifa" name="tarifa" required #tarifa="ngModel">
                                                 <option [ngValue]="undefined" selected>
                                                     Seleccionar
                                                 </option>
-                                                <option *ngFor="let tip of tiposId" [ngValue]="tip.tipoIdentificacionId">
-                                                    {{tip.nombre}}</option>
+                                                <option *ngFor="let tar of tarifas" [ngValue]="tar.tarifaId">
+                                                    {{tar.ubicacion}}</option>
                                             </select>
                                             <div class="alert alert-danger"
-                                                *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
-                                                <div *ngIf="tipo.errors.required">
-                                                    Tipo Identificación es requerida
+                                                *ngIf="tarifa.invalid && (tarifa.dirty || tarifa.touched)">
+                                                <div *ngIf="tarifa.errors.required">
+                                                    Tarifa es requerida
                                                 </div>
                                             </div>
                                         </div>
 
+
                                         <div class="form-group col-md-3">
-                                            <label for="tipoIdentificacion" style="font-size: medium">Tipo Identificación</label>
+                                            <label for="aliado" style="font-size: medium">Aliado</label>
                                             <select  class="form-control "
-                                                [(ngModel)]="domiciliario.tipoIdentificacion" name="tipoIdentificacion" #tipo="ngModel">
+                                                [(ngModel)]="pedido.aliado" name="aliado" required #aliado="ngModel">
                                                 <option [ngValue]="undefined" selected>
                                                     Seleccionar
                                                 </option>
-                                                <option *ngFor="let tip of tiposId" [ngValue]="tip.tipoIdentificacionId">
-                                                    {{tip.nombre}}</option>
+                                                <option *ngFor="let ali of aliados" [ngValue]="ali.aliadoId">
+                                                    {{ali.razonSocial}}</option>
+                                            </select>
+                                            <div class="alert alert-danger"
+                                                *ngIf="aliado.invalid && (aliado.dirty || aliado.touched)">
+                                                <div *ngIf="aliado.errors.required">
+                                                    Aliado es requerido
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="form-group col-md-3">
+                                            <label for="domiciliario" style="font-size: medium">Domiciliario</label>
+                                            <select  class="form-control "
+                                                [(ngModel)]="pedido.domiciliario" name="domiciliario" #domiciliario="ngModel">
+                                                <option [ngValue]="undefined" selected>
+                                                    Seleccionar
+                                                </option>
+                                                <option *ngFor="let dom of domiciliarios" [ngValue]="dom.domiciliarioId">
+                                                    {{dom.nombres}}</option>
                                             </select>
                                             
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="tipoIdentificacion" style="font-size: medium">Tipo Identificación</label>
-                                            <select  class="form-control "
-                                                [(ngModel)]="domiciliario.tipoIdentificacion" name="tipoIdentificacion" required #tipo="ngModel">
-                                                <option [ngValue]="undefined" selected>
-                                                    Seleccionar
-                                                </option>
-                                                <option *ngFor="let tip of tiposId" [ngValue]="tip.tipoIdentificacionId">
-                                                    {{tip.nombre}}</option>
-                                            </select>
-                                            <div class="alert alert-danger"
-                                                *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
-                                                <div *ngIf="tipo.errors.required">
-                                                    Tipo Identificación es requerida
-                                                </div>
-                                            </div>
                                         </div>
                                        
 

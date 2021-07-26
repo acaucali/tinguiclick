@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.validation.Valid"/>
 <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
 <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
 <fullyQualifiedTypeName name="com.tinguiclick.dao.IRegistroDao"/>
 <fullyQualifiedTypeName name="javax.persistence.OneToOne"/>
-<fullyQualifiedTypeName name="com.tinguiclick.service.IDomiciliariosService"/>
 <fullyQualifiedTypeName name="com.tinguiclick.model.Aliados"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="javax.persistence.Table"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.tinguiclick.pedidos.dao.IPedidoDao"/>
 <fullyQualifiedTypeName name="com.tinguiclick.pedidos.model.Pedido"/>
+<fullyQualifiedTypeName name="com.tinguiclick.service.IDomiciliariosService"/>
+<fullyQualifiedTypeName name="com.tinguiclick.service.IAliadosService"/>
 </qualifiedTypeNameHistroy>
