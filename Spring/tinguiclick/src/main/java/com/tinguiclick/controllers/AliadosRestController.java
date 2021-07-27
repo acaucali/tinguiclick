@@ -141,6 +141,8 @@ public class AliadosRestController {
 			aliadoActual.setRazonSocial(aliado.getRazonSocial());
 			aliadoActual.setTelefono(aliado.getTelefono());
 			aliadoActual.setDocumentoId(aliado.getDocumentoId());
+			aliadoActual.setTipoCuentaBancaria(aliado.getTipoCuentaBancaria());
+			aliadoActual.setNombreBanco(aliado.getNombreBanco());
 																
 			aliadoUpdated=aliadosService.save(aliadoActual);
 		

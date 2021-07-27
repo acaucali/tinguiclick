@@ -86,7 +86,7 @@ export class AliadosComponent implements OnInit {
             cuentaNequi: ali.cuentaNequi, cuentaDaviplata: ali.cuentaDaviplata, cuentaBancaria: ali.cuentaBancaria,
             direccionFactura: ali.direccionFactura, emailFactura: ali.emailFactura, categoriaPrincipal: ali.categoriaPrincipal,
             categoriaSecundaria: ali.categoriaSecundaria, categoriaTerciaria: ali.categoriaTerciaria, documentoId: ali.documentoId,
-            pedidos: ali.pedidos
+            pedidos: ali.pedidos, nombreBanco: ali.nombreBanco, tipoCuentaBancaria: ali.tipoCuentaBancaria
             });
         });
       }

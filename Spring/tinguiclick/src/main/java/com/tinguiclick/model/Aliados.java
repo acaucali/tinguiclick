@@ -75,7 +75,6 @@ public class Aliados implements Serializable{
 	@Column(nullable=true)
 	private String categoriaTerciaria;
 	
-		
 	@Column(nullable=true)
 	private Long documentoId;
 	
@@ -83,6 +82,11 @@ public class Aliados implements Serializable{
 	@OneToMany(cascade= CascadeType.ALL, mappedBy="aliado", fetch=FetchType.LAZY)
 	private List<Pedido> pedidos;
 	
+	@Column(nullable=true)
+	private byte tipoCuentaBancaria;
+	
+	@Column(nullable=true)
+	private Integer nombreBanco;
 	
 	public Long getAliadoId() {
 		return aliadoId;
@@ -202,6 +206,22 @@ public class Aliados implements Serializable{
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+	
+	public byte getTipoCuentaBancaria() {
+		return tipoCuentaBancaria;
+	}
+
+	public void setTipoCuentaBancaria(byte tipoCuentaBancaria) {
+		this.tipoCuentaBancaria = tipoCuentaBancaria;
+	}
+
+	public Integer getNombreBanco() {
+		return nombreBanco;
+	}
+
+	public void setNombreBanco(Integer nombreBanco) {
+		this.nombreBanco = nombreBanco;
 	}
 
 
