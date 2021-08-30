@@ -27,10 +27,6 @@ public class TipoIdentificacion implements Serializable{
 	@Size(max=200)
 	@Column(nullable=true)
 	private String descripcion;
-	
-	@OneToOne
-	@JoinColumn(name="usuario_id", nullable=true)
-	private Usuario usuario;
 
 	public Long getTipoIdentificacionId() {
 		return tipoIdentificacionId;
@@ -56,15 +52,7 @@ public class TipoIdentificacion implements Serializable{
 		this.descripcion = descripcion;
 	}
 			
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-
+	
 
 	/**
 	 * 

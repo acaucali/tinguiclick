@@ -101,10 +101,12 @@ public class Domiciliarios implements Serializable{
 	@Column(nullable=true)
 	private String cuentaBancaria;
 	
-	@JsonIgnoreProperties(value ={ "hibernateLazyInitializer", "handler", "domiciliario" }, allowSetters = true)
-	@OneToMany(cascade= CascadeType.ALL, mappedBy="domiciliario", fetch=FetchType.LAZY)
-	private List<Pedido> pedidos;
-
+	@Column(nullable=true)
+	private byte tipoCuentaBancaria;
+	
+	@Column(nullable=true)
+	private Integer nombreBanco;
+	
 	public Long getDomiciliarioId() {
 		return domiciliarioId;
 	}
@@ -272,14 +274,23 @@ public class Domiciliarios implements Serializable{
 	public void setCuentaBancaria(String cuentaBancaria) {
 		this.cuentaBancaria = cuentaBancaria;
 	}
-
-	public List<Pedido> getPedidos() {
-		return pedidos;
+	
+	public byte getTipoCuentaBancaria() {
+		return tipoCuentaBancaria;
 	}
 
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public void setTipoCuentaBancaria(byte tipoCuentaBancaria) {
+		this.tipoCuentaBancaria = tipoCuentaBancaria;
 	}
+
+	public Integer getNombreBanco() {
+		return nombreBanco;
+	}
+
+	public void setNombreBanco(Integer nombreBanco) {
+		this.nombreBanco = nombreBanco;
+	}
+
 
 
 	/**

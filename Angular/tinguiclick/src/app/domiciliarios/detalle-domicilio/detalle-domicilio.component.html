@@ -221,10 +221,10 @@
 
                                 <div class="tab-pane fade" id="cuenta" role="tabpanel" aria-labelledby="cuenta-tab">
                                     <div class="form-row"> 
-                                        <div class="form-group col-md-3">
+                                        <div class="form-group col-md-4">
                                             <label for="nombreBanco" style="font-size: medium">Nombre Banco</label>
                                             <select  class="form-control "
-                                                [(ngModel)]="aliado.nombreBanco" name="nombreBanco" #nombreBanco="ngModel">
+                                                [(ngModel)]="domiciliario.nombreBanco" name="nombreBanco" #nombreBanco="ngModel">
                                                 <option [ngValue]="undefined" selected>
                                                     Seleccionar
                                                 </option>
@@ -255,7 +255,7 @@
                                         <div class="form-group col-md-3">
                                             <label for="tipoCuenta" style="font-size: medium">Tipo Cuenta</label>
                                             <select  class="form-control "
-                                                [(ngModel)]="aliado.tipoCuentaBancaria" name="tipoCuentaBancaria" #tipoCuenta="ngModel">
+                                                [(ngModel)]="domiciliario.tipoCuentaBancaria" name="tipoCuentaBancaria" #tipoCuenta="ngModel">
                                                 <option [ngValue]="undefined" selected>
                                                     Seleccionar
                                                 </option>

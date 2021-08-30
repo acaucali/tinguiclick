@@ -55,6 +55,7 @@ export class DetallePedidoComponent implements OnInit {
   
  
   create(): void{
+    this.pedido.estado=0;
     console.log(this.pedido);
     this.pedidoService.create(this.pedido).subscribe(
       json => {

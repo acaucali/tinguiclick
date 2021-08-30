@@ -5,6 +5,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tinguiclick.model.Roles;
 import com.tinguiclick.model.Usuario;
+import com.tinguiclick.service.RolesService;
 import com.tinguiclick.service.UsuarioService;
 
 import java.util.ArrayList;
@@ -38,6 +41,12 @@ import org.slf4j.LoggerFactory;
 public class UsuarioRestController {
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private RolesService rolesService;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	private final Logger log = LoggerFactory.getLogger(UsuarioRestController.class);
 	
@@ -91,6 +100,40 @@ public class UsuarioRestController {
 		
 		try { 
 			 
+			Byte tipo = usuarioN.getTipoUsuario();
+			
+			//contrasena 
+			
+			usuarioN.setPassword(encriptarContrasena(usuarioN.getPassword()));
+				
+			
+			Roles rol = new Roles();
+			
+			//busca el rol
+			
+			switch(tipo) {
+			
+				case 0:
+					rol = rolesService.findById((long) 1);
+					
+					break;
+				case 1:
+					rol = rolesService.findById((long) 3);
+						
+					break;
+				case 2:
+					rol = rolesService.findById((long) 2);
+					break;
+				case 3: 
+					rol = rolesService.findById((long) 4);
+					break;
+			}
+			
+			//inserta el rol
+			if(rol != null) {
+				usuarioN.addRol(rol);
+			}
+			
 			usuarioNew= usuarioService.save(usuarioN);
 
 		}catch(DataAccessException e) {
@@ -130,13 +173,13 @@ public class UsuarioRestController {
 			
 			usuarioActual.setApellidos(usuario.getApellidos());
 			usuarioActual.setHabilitado(usuario.getHabilitado());
-			usuarioActual.setPassword(usuario.getPassword());
+			usuarioActual.setPassword(encriptarContrasena(usuario.getPassword()));
 			usuarioActual.setDireccion(usuario.getDireccion());
 			usuarioActual.setEmail(usuario.getEmail());
 			usuarioActual.setIdentificacion(usuario.getIdentificacion());
 			usuarioActual.setNombres(usuario.getNombres());
 			usuarioActual.setTelefono(usuario.getTelefono());
-			usuarioActual.setTipo(usuario.getTipo());
+			usuarioActual.setTipoIdentificacion(usuario.getTipoIdentificacion());
 			usuarioActual.setTipoUsuario(usuario.getTipoUsuario());
 			usuarioActual.setUsername(usuario.getUsername());
 						
@@ -169,6 +212,15 @@ public class UsuarioRestController {
 		response.put("mensaje", "El usuario ha sido eliminado con exito!");
 		return new ResponseEntity<Map<String, Object>> (response,HttpStatus.OK);
 	}
-
+	
+	public String encriptarContrasena(String contrasena) {
+		
+		String passwordBcrypt = passwordEncoder.encode(contrasena);
+		
+		return passwordBcrypt;
+		
+	}
+	
+	
 }
 

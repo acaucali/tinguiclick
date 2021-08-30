@@ -7,7 +7,13 @@
       <div class="my-2 text-left">
         <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="crearPedidos()" type="button" placement="bottom" ngbTooltip="Crear Pedido">
           <i class="far fa-plus-square fa-lg"></i></button>
-  
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="generarFacturas()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
+          <i class="fa fa-calendar fa-lg"></i></button>
+        
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="generarFacturas()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
+          <i class="fa fa-hourglass-end fa-lg"></i></button>
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="generarFacturas()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
+          <i class="fa fa-building fa-lg"></i></button>  
       </div>
   
       <div *ngIf="pedidos?.length==0" class="alert alert-info">

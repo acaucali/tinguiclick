@@ -33,7 +33,7 @@
                                             maxlength="500"></textarea>
                                         </div>
 
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6" *ngIf="pedido.pedidoId">
                                             <label for="observacion" style="font-size: medium">Observación</label>
                                             <textarea class="form-control" rows="5" placeholder="Observación" [(ngModel)]="pedido.observacion" name="observacion"
                                             maxlength="500"></textarea>
@@ -46,7 +46,7 @@
                                         </div>
                                                                               
 
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-4" *ngIf="pedido.pedidoId">
                                             <label for="estado" style="font-size: medium">Estado</label>
                                             <select class="form-control" name="estado"
                                             [(ngModel)]="pedido.estado" name="estado" required #estado="ngModel">
@@ -62,7 +62,7 @@
                                         <div class="form-group col-md-4">
                                             <label for="tipo" style="font-size: medium">Tipo</label>
                                             <select class="form-control" name="tipo"
-                                            [(ngModel)]="pedido.tipo" name="tipo" required #tipoUsuario="ngModel">
+                                            [(ngModel)]="pedido.tipo" name="tipo" required #tipo="ngModel">
                                                 <option [ngValue]="undefined" selected>Seleccionar
                                                 <option [ngValue]="0">Restaurante
                                                 <option [ngValue]="1">Click-Favor
@@ -104,7 +104,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-group col-md-3">
+                                        <div class="form-group col-md-3" *ngIf="pedido.pedidoId">
                                             <label for="tarifa" style="font-size: medium">Tarifa</label>
                                             <select  class="form-control "
                                                 [(ngModel)]="pedido.tarifa" name="tarifa" required #tarifa="ngModel">

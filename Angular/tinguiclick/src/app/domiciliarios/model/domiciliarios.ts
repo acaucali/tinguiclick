@@ -23,6 +23,7 @@ export class Domiciliarios{
     cuentaNequi: string;
     cuentaDaviplata: string;
     cuentaBancaria: string;
-    pedidos: Pedido[];
+    tipoCuentaBancaria: number;
+    nombreBanco: string;
 
 }

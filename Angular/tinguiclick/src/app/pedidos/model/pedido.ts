@@ -1,5 +1,3 @@
-import { Aliados } from "src/app/aliados/model/aliados";
-import { Domiciliarios } from "src/app/domiciliarios/model/domiciliarios";
 
 export class Pedido{
 
@@ -9,8 +7,8 @@ export class Pedido{
     direccionCliente: string;
     numeroCelular: BigInteger;
     telefono: BigInteger;
-    municipio: string;
-    ciudad: string;
+    municipio: number;
+    ciudad: number;
     metodoPago: number;
     detalle: string;
     observacion: string;
@@ -19,6 +17,8 @@ export class Pedido{
     estado: number;
     tipo: number;
     tarifa: BigInteger;
-    aliado: Aliados;
-    domiciliario: Domiciliarios;
+    aliado: number;
+    domiciliario: number;
+    fechaRegistro: Date;
+    fechaModificacion: Date;
 }

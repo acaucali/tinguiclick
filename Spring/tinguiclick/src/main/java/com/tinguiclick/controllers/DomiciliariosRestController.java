@@ -148,6 +148,8 @@ public class DomiciliariosRestController {
 			domiciliarioActual.setCuentaBancaria(domiciliario.getCuentaBancaria());
 			domiciliarioActual.setCuentaDaviplata(domiciliario.getCuentaDaviplata());
 			domiciliarioActual.setCuentaNequi(domiciliario.getCuentaNequi());
+			domiciliarioActual.setTipoCuentaBancaria(domiciliario.getTipoCuentaBancaria());
+			domiciliarioActual.setNombreBanco(domiciliario.getNombreBanco());
 													
 			domiciliariodUpdated=domiciliariosService.save(domiciliarioActual);
 			

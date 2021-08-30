@@ -4,9 +4,9 @@ export class Usuario{
     usuarioId: number;
     nombres: string;
     apellidos: string;
-    identificacion: number;
-    tipo: TipoIdentificacion;
-    telefono: number;
+    identificacion: BigInteger;
+    tipoIdentificacion: BigInteger;
+    telefono: BigInteger;
     direccion: string;
     email: string;
     tipoUsuario: number;

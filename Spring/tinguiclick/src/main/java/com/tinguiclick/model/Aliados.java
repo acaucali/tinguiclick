@@ -78,10 +78,6 @@ public class Aliados implements Serializable{
 	@Column(nullable=true)
 	private Long documentoId;
 	
-	@JsonIgnoreProperties(value ={ "hibernateLazyInitializer", "handler", "aliado" }, allowSetters = true)
-	@OneToMany(cascade= CascadeType.ALL, mappedBy="aliado", fetch=FetchType.LAZY)
-	private List<Pedido> pedidos;
-	
 	@Column(nullable=true)
 	private byte tipoCuentaBancaria;
 	
@@ -198,14 +194,6 @@ public class Aliados implements Serializable{
 
 	public void setDocumentoId(Long documentoId) {
 		this.documentoId = documentoId;
-	}
-
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
 	}
 	
 	public byte getTipoCuentaBancaria() {

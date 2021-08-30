@@ -37,6 +37,7 @@ import { DetalleTarifaComponent } from './tarifas/detalle-tarifa/detalle-tarifa.
 import { TarifaService } from './tarifas/model/tarifa.service';
 import { DetallePedidoComponent } from './pedidos/detalle-pedido/detalle-pedido.component';
 import { PedidosService } from './pedidos/model/pedidos.service';
+import { DetalleFacturaComponent } from './pedidos/detalle-factura/detalle-factura.component';
 
 
 
@@ -56,7 +57,8 @@ import { PedidosService } from './pedidos/model/pedidos.service';
     DetalleAliadoComponent,
     TarifasComponent,
     DetalleTarifaComponent,
-    DetallePedidoComponent
+    DetallePedidoComponent,
+    DetalleFacturaComponent
   ],
   imports: [
     BrowserModule,

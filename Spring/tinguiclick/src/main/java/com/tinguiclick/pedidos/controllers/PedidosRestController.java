@@ -1,5 +1,6 @@
 package com.tinguiclick.pedidos.controllers;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +83,7 @@ public class PedidosRestController {
 	
 	//servicio que crea un tipo de identificacion
 	@PostMapping("/pedidos")
-	public ResponseEntity<?> create(@Valid @RequestBody Pedido pedidoN, BindingResult result, @PathVariable Long aliadoId,  @PathVariable Long domiciliarioId) {
+	public ResponseEntity<?> create(@Valid @RequestBody Pedido pedidoN, BindingResult result) {
 		
 		Pedido pedidoNew= null;
 		
@@ -99,7 +100,7 @@ public class PedidosRestController {
 		}
 		
 		try { 
-			
+			pedidoN.setFechaRegistro(new Date());
 			pedidoNew= pedidosService.save(pedidoN);
 
 		}catch(DataAccessException e) {
@@ -153,6 +154,7 @@ public class PedidosRestController {
 			pedidoActual.setTelefono(pedido.getTelefono());
 			pedidoActual.setTipo(pedido.getTipo());
 			pedidoActual.setValor(pedido.getValor());
+			pedidoActual.setFechaModificacion(new Date());
 																			
 			pedidoUpdated=pedidosService.save(pedidoActual);
 		

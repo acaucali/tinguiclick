@@ -16,7 +16,6 @@ export class Aliados{
     categoriaSecundaria: string;
     categoriaTerciaria: string;
     documentoId: number;
-    pedidos: Pedido[];
     tipoCuentaBancaria: number;
-    nombreBanco: BigInteger;
+    nombreBanco: string;
 }

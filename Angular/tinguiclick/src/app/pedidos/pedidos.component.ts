@@ -84,8 +84,8 @@ export class PedidosComponent implements OnInit {
           this.elements.push({
             pedidoId: ped.pedidoId, nombreCliente: ped.nombreCliente, apellidoCliente: ped.apellidoCliente, direccionCliente: ped.direccionCliente,
             numeroCelular: ped.numeroCelular, telefono: ped.telefono, municipio: ped.municipio, ciudad: ped.ciudad, metodoPago: ped.metodoPago,
-            detalle: ped.detalle, observacion: ped.observacion, valor: ped.valor, alerta: ped.alerta, estado: ped.alerta, tipo: ped.tipo,
-            tarifa: ped.tarifa, aliado: ped.aliado, domiciliario: ped.domiciliario
+            detalle: ped.detalle, observacion: ped.observacion, valor: ped.valor, alerta: ped.alerta, estado: ped.estado, tipo: ped.tipo,
+            tarifa: ped.tarifa, aliado: ped.aliado, domiciliario: ped.domiciliario, fechaRegistro: ped.fechaRegistro, fechaModificacion: ped.fechaModificacion
             
             });
         });

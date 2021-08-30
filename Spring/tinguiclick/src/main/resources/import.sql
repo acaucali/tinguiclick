@@ -4,9 +4,10 @@ INSERT INTO usuario (usuario_Id, username , nombres, apellidos, password, habili
 INSERT INTO roles (rol_Id, nombre) values (1,'ROLE_ADMIN');
 INSERT INTO roles (rol_Id, nombre) values (2,'ROLE_DOMI');
 INSERT INTO roles (rol_Id, nombre) values (3,'ROLE_ALIADO');
+INSERT INTO roles (rol_Id, nombre) values (4,'ROLE_USER');
 
 
-INSERT INTO usuarios_roles (user_id, rol_id) values (1,1)
+INSERT INTO usuarios_roles (usuario_id, rol_id) values (1,1)
 
 INSERT INTO tipo_identificacion (tipo_identificacion_id, nombre) values (1, 'Cédula Ciudadanía');
 INSERT INTO tipo_identificacion (tipo_identificacion_id, nombre) values (2, 'Cédula Extranjería');

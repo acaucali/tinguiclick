@@ -85,7 +85,7 @@ export class ConfigComponent implements OnInit {
           this.elements.push({
             
             usuarioId: usu.usuarioId, nombres: usu.nombres, apellidos: usu.apellidos, identificacion: usu.identificacion, 
-            tipoId: usu.tipo, telefono: usu.telefono, direccion: usu.direccion, email: usu.email, tipoUsuario: usu.tipoUsuario,
+            tipoIdentificacion: usu.tipoIdentificacion, telefono: usu.telefono, direccion: usu.direccion, email: usu.email, tipoUsuario: usu.tipoUsuario,
             username: usu.username, password: usu.password, habilitado: usu.habilitado, roles: usu.roles
             
             });

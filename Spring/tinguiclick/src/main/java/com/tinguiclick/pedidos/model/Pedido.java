@@ -1,6 +1,7 @@
 package com.tinguiclick.pedidos.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,13 +44,11 @@ public class Pedido implements Serializable{
 	@Column(nullable=true)
 	private Long telefono;
 	
-	@Size(max=300)
 	@Column(nullable=true)
-	private String municipio;
+	private Byte municipio;
 	
-	@Size(max=500)
 	@Column(nullable=true)
-	private String ciudad;
+	private Byte ciudad;
 	
 	@Column(nullable=true)
 	private Byte metodoPago;
@@ -79,16 +78,18 @@ public class Pedido implements Serializable{
 	@Column(nullable=true)
 	private Long tarifa;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "aliadoId", nullable = false)
-	@JsonIgnoreProperties(value={ "hibernateLazyInitializer", "handler", "pedidos" }, allowSetters = true)
-	private Aliados aliado;
+	@Column(nullable=true)
+	private Long aliado;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "domiciliarioId", nullable = false)
-	@JsonIgnoreProperties(value={ "hibernateLazyInitializer", "handler", "pedidos" }, allowSetters = true)
-	private Domiciliarios domiciliario;
-		
+	@Column(nullable=true)
+	private Long domiciliario;
+	
+	@Column(nullable=true)
+	private Date fechaRegistro;
+	
+	@Column(nullable=true)
+	private Date fechaModificacion;
+			
 	public Long getPedidoId() {
 		return pedidoId;
 	}
@@ -135,22 +136,6 @@ public class Pedido implements Serializable{
 
 	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
-	}
-
-	public String getMunicipio() {
-		return municipio;
-	}
-
-	public void setMunicipio(String municipio) {
-		this.municipio = municipio;
-	}
-
-	public String getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
 	}
 
 	public Byte getMetodoPago() {
@@ -217,20 +202,52 @@ public class Pedido implements Serializable{
 		this.tarifa = tarifa;
 	}
 
-	public Aliados getAliado() {
+	public Long getAliado() {
 		return aliado;
 	}
 
-	public void setAliado(Aliados aliado) {
+	public void setAliado(Long aliado) {
 		this.aliado = aliado;
 	}
 
-	public Domiciliarios getDomiciliario() {
+	public Long getDomiciliario() {
 		return domiciliario;
 	}
 
-	public void setDomiciliario(Domiciliarios domiciliario) {
+	public void setDomiciliario(Long domiciliario) {
 		this.domiciliario = domiciliario;
+	}
+		
+	public Byte getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(Byte municipio) {
+		this.municipio = municipio;
+	}
+
+	public Byte getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(Byte ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
 

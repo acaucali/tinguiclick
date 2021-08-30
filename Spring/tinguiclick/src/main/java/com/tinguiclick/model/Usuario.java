@@ -1,6 +1,7 @@
 package com.tinguiclick.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -36,15 +37,13 @@ public class Usuario implements Serializable{
 	private String apellidos;
 	
 	@Column(nullable=true)
-	private Integer identificacion;
+	private Long identificacion;
 
-	@OneToOne(mappedBy="usuario")
-	@JoinColumn(name="tipo_id", nullable=true)
-	private TipoIdentificacion tipo;
-	
-	@Size(max=50)
 	@Column(nullable=true)
-	private Integer telefono;
+	private Long tipoIdentificacion;
+	
+	@Column(nullable=true)
+	private Long telefono;
 	
 	@Size(max=350)
 	@Column(nullable=true)
@@ -58,7 +57,7 @@ public class Usuario implements Serializable{
 	private Byte tipoUsuario;
 	
 	@Size(max=50)
-	@Column(nullable=false)
+	@Column(nullable=false, unique=true)
 	private String username;
 	
 	@Size(max=500)
@@ -69,12 +68,22 @@ public class Usuario implements Serializable{
 	private Boolean habilitado;
 	
 	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinTable(name="usuarios_roles", joinColumns= @JoinColumn(name="user_id"),
+	@JoinTable(name="usuarios_roles", joinColumns= @JoinColumn(name="usuario_id"),
 	inverseJoinColumns=@JoinColumn(name="rol_id"),
-	uniqueConstraints= {@UniqueConstraint(columnNames= {"user_id", "rol_id"})})
+	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "rol_id"})})
 	@JsonIgnoreProperties(value ={ "hibernateLazyInitializer", "handler", "usuarios" }, allowSetters = true)
 	private List<Roles> roles;
 
+	public void addRol(Roles rol){
+		
+        if(this.roles == null){
+            this.roles = new ArrayList<>();
+        }
+        
+        this.roles.add(rol);
+    }
+	
+	
 	public Long getUsuarioId() {
 		return usuarioId;
 	}
@@ -98,28 +107,20 @@ public class Usuario implements Serializable{
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-
-	public Integer getIdentificacion() {
+	
+	public Long getIdentificacion() {
 		return identificacion;
 	}
 
-	public void setIdentificacion(Integer identificacion) {
+	public void setIdentificacion(Long identificacion) {
 		this.identificacion = identificacion;
 	}
 
-	public TipoIdentificacion getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoIdentificacion tipo) {
-		this.tipo = tipo;
-	}
-
-	public Integer getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 
@@ -178,6 +179,16 @@ public class Usuario implements Serializable{
 	public void setRoles(List<Roles> roles) {
 		this.roles = roles;
 	}
+	
+	public Long getTipoIdentificacion() {
+		return tipoIdentificacion;
+	}
+
+	public void setTipoIdentificacion(Long tipoIdentificacion) {
+		this.tipoIdentificacion = tipoIdentificacion;
+	}
+
+
 
 	/**
 	 * 

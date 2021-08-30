@@ -89,7 +89,7 @@ export class DomiciliariosComponent implements OnInit {
             grupoSanguineo: dom.grupoSanguineo, pasaporte: dom.pasaporte, arriendo: dom.arriendo,
             duracionArriendo: dom.duracionArriendo, horarioDisponibilidad: dom.horarioDisponibilidad, diasDisponibilidad: dom.diasDisponibilidad,usuarioId: dom.usuarioId,      
             documentoId: dom.documentoId, cuentaNequi: dom.cuentaNequi, cuentaDaviplata: dom.cuentaDaviplata,
-            cuentaBancaria: dom.cuentaBancaria, pedidos: dom.pedidos
+            cuentaBancaria: dom.cuentaBancaria, tipoCuentaBancaria: dom.tipoCuentaBancaria, nombreBanco: dom.nombreBanco
             });
         });
       }

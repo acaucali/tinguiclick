@@ -13,7 +13,7 @@
                     <div class="container">
                         <form #usuarioForm="ngForm">
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="usuario" style="font-size: medium">Usuario Login</label>
                                     <input type="text" class="form-control" placeholder="Usuario"
                                         [(ngModel)]="usuario.username" name="username" required maxlength="20"
@@ -25,7 +25,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="usuario" style="font-size: medium">Nombres</label>
                                     <input type="text" class="form-control" placeholder="Nombres"
                                         [(ngModel)]="usuario.nombres" name="nombre" required maxlength="20"
@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="usuario" style="font-size: medium">Apellidos</label>
                                     <input type="text" class="form-control" placeholder="Apellidos"
                                         [(ngModel)]="usuario.apellidos" name="apellido" required maxlength="20"
@@ -49,39 +49,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="usuario" style="font-size: medium">Número de Identificación</label>
-                                    <input type="number" class="form-control" placeholder="Identificación"
-                                        [(ngModel)]="usuario.identificacion" name="identificacion" required max="10"
-                                        #identificacion="ngModel">
-                                    <div class="alert alert-danger"
-                                        *ngIf="identificacion.invalid && (identificacion.dirty || identificacion.touched)">
-                                        <div *ngIf="identificacion.errors.required">
-                                            Identificación es requerido
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label for="usuario" style="font-size: medium">Tipo Identificación</label>
-                                    <select  class="form-control "
-                                        [(ngModel)]="usuario.tipo" name="tipo" required #tipo="ngModel">
-                                        <option [ngValue]="undefined" selected>
-                                            Seleccionar
-                                        </option>
-                                        <option *ngFor="let tip of tiposId" [ngValue]="tip">
-                                            {{tip.nombre}}</option>
-                                    </select>
-                                    <div class="alert alert-danger"
-                                        *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
-                                        <div *ngIf="tipo.errors.required">
-                                            Tipo Identificación es requerida
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group col-md-6">
+                                
+                                <div class="form-group col-md-4">
                                     <label for="usuario" style="font-size: medium">Contraseña</label>
                                     <input type="password" class="form-control" placeholder="Contraseña"
                                         [(ngModel)]="usuario.password" name="password" required maxlength="20"
@@ -94,18 +63,50 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-md-6">
-                                    <label for="usuario" style="font-size: medium">Teléfono Contacto</label>
-                                    <input type="number" class="form-control" placeholder="Teléfono Contacto"
-                                        [(ngModel)]="usuario.telefono" name="telefono" required #celular="ngModel">
+                                <div class="form-group col-md-3">
+                                    <label for="usuario" style="font-size: medium">Tipo Identificación</label>
+                                    <select  class="form-control "
+                                        [(ngModel)]="usuario.tipoIdentificacion" name="tipoIdentificacion" required #tipo="ngModel">
+                                        <option [ngValue]="undefined" selected>
+                                            Seleccionar
+                                        </option>
+                                        <option *ngFor="let tip of tiposId" [ngValue]="tip.tipoIdentificacionId">
+                                            {{tip.nombre}}</option>
+                                    </select>
                                     <div class="alert alert-danger"
-                                        *ngIf="celular.invalid && (celular.dirty || celular.touched)">
-                                        <div *ngIf="celular.errors.required">
-                                            Número Contacto es requerido
+                                        *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
+                                        <div *ngIf="tipo.errors.required">
+                                            Tipo Identificación es requerida
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group col-md-5">
+                                    <label for="usuario" style="font-size: medium">Número de Identificación</label>
+                                    <input type="number" class="form-control" placeholder="Identificación"
+                                        [(ngModel)]="usuario.identificacion" name="identificacion" required max="10"
+                                        #identificacion="ngModel">
+                                    <div class="alert alert-danger"
+                                        *ngIf="identificacion.invalid && (identificacion.dirty || identificacion.touched)">
+                                        <div *ngIf="identificacion.errors.required">
+                                            Identificación es requerido
+                                        </div>
+                                    </div>
+                                </div>                         
+
+                                <div class="form-group col-md-6">
+                                    <label for="usuario" style="font-size: medium">Correo Electrónico</label>
+                                    <input type="email" class="form-control" placeholder="Correo Electronico"
+                                        [(ngModel)]="usuario.email" name="email" required maxlength="20"
+                                        #correo="ngModel">
+                                    <div class="alert alert-danger"
+                                        *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+                                        <div *ngIf="correo.errors.required">
+                                            Correo es requerido
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- Campos Paciente -->
 
                                 <div class="form-group col-md-6">
@@ -120,20 +121,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="usuario" style="font-size: medium">Correo Electrónico</label>
-                                    <input type="email" class="form-control" placeholder="Correo Electronico"
-                                        [(ngModel)]="usuario.email" name="email" required maxlength="20"
-                                        #correo="ngModel">
+                                
+                                <div class="form-group col-md-4">
+                                    <label for="usuario" style="font-size: medium">Teléfono Contacto</label>
+                                    <input type="number" class="form-control" placeholder="Teléfono Contacto"
+                                        [(ngModel)]="usuario.telefono" name="telefono" required #celular="ngModel">
                                     <div class="alert alert-danger"
-                                        *ngIf="correo.invalid && (correo.dirty || correo.touched)">
-                                        <div *ngIf="correo.errors.required">
-                                            Correo es requerido
+                                        *ngIf="celular.invalid && (celular.dirty || celular.touched)">
+                                        <div *ngIf="celular.errors.required">
+                                            Número Contacto es requerido
                                         </div>
                                     </div>
                                 </div>
                                                                
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="tipo" style="font-size: medium">Tipo Usuario</label>
                                     <select class="form-control" name="tipoUsuario"
                                     [(ngModel)]="usuario.tipoUsuario" name="tipoUsuario" required #tipoUsuario="ngModel"
@@ -146,7 +147,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="usuario" style="font-size: medium">Habilitado</label>
                                     &nbsp;&nbsp;
                                     <input type="checkbox"  
