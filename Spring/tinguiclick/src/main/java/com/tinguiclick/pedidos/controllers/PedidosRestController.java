@@ -101,6 +101,7 @@ public class PedidosRestController {
 		
 		try { 
 			pedidoN.setFechaRegistro(new Date());
+			pedidoN.setAlerta("verde");
 			pedidoNew= pedidosService.save(pedidoN);
 
 		}catch(DataAccessException e) {

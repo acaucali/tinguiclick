@@ -25,36 +25,36 @@
             <thead>
               <tr class="text-white" style="background-color: #089fd6;">
                 <td width="50" *ngIf="authService.hasRole('ROLE_ADMIN')">Acciones</td>
-                <td>Nombre Cliente</td>
-                <td>Apellido Cliente</td>
-                <td>Celular</td>
-                <td>Municipio</td>
-                <td>Detalle</td>
-                <td>Valor</td>
                 <td>Alerta</td>
+                <td>Nombre Cliente</td>
+                <td>Dirección Cliente</td>
+                <td>Numero Contacto</td>
+                <td>Aliado</td>
+                <td>Valor</td>
+                <td>Fecha Registro</td>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let el of elements | paginate: {itemsPerPage: 10, currentPage: pagePed, id: 'pagePedi'}">
-                <td width="50"  *ngIf="authService.hasRole('ROLE_ADMIN')">
+                <td width="50" >
                     &nbsp;
-                  <i class="fas fa-edit" (click)="abrirModal(el)" style="cursor: pointer;" ></i>
+                  <i class="fas fa-edit" (click)="abrirModal(el)" style="cursor: pointer;" *ngIf="authService.hasRole('ROLE_ADMIN')"></i>
                   &nbsp;&nbsp;
-                  <i class="fas fa-trash-alt" (click)='delete(el)' style="cursor: pointer;"></i>
+                  <i class="fa fa-eye" (click)='delete(el)' style="cursor: pointer;"></i>
+                </td>
+                <td>
+                  <div id="red" *ngIf="el.alerta == 'rojo'"></div>
+                  <div id="orange" *ngIf="el.alerta == 'naranja'"></div>
+                  <div id="yellow" *ngIf="el.alerta == 'amarillo'"></div>
+                  <div id="green" *ngIf="el.alerta == 'verde'"></div>
                 </td>
                 <td>{{el.nombreCliente}} </td>
-                <td>{{el.apellidoCliente}} </td>
+                <td>{{el.direccionCliente}} </td>
                 <td>{{el.numeroCelular}} </td>
-                <td>{{el.municipio}} </td>
-                <td>{{el.detalle}} </td>
+                <td>{{el.aliado}} </td>
                 <td>{{el.valor}} </td>
-                <td>
-                    <div id="red" *ngIf="el.alerta == 'rojo'"></div>
-                    <div id="orange" *ngIf="el.alerta == 'naranja'"></div>
-                    <div id="yellow" *ngIf="el.alerta == 'amarillo'"></div>
-                    <div id="green" *ngIf="el.alerta == 'verde'"></div>
-                </td>
-
+                <td>{{el.fechaRegistro}} </td>
+                
               </tr>
             </tbody>
             

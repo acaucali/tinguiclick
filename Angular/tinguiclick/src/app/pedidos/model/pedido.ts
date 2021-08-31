@@ -16,7 +16,7 @@ export class Pedido{
     alerta: string;
     estado: number;
     tipo: number;
-    tarifa: BigInteger;
+    tarifa: number;
     aliado: number;
     domiciliario: number;
     fechaRegistro: Date;
