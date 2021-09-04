@@ -38,6 +38,7 @@ import { TarifaService } from './tarifas/model/tarifa.service';
 import { DetallePedidoComponent } from './pedidos/detalle-pedido/detalle-pedido.component';
 import { PedidosService } from './pedidos/model/pedidos.service';
 import { DetalleFacturaComponent } from './pedidos/detalle-factura/detalle-factura.component';
+import { DetalleDataComponent } from './pedidos/detalle/detalle.component';
 
 
 
@@ -58,7 +59,8 @@ import { DetalleFacturaComponent } from './pedidos/detalle-factura/detalle-factu
     TarifasComponent,
     DetalleTarifaComponent,
     DetallePedidoComponent,
-    DetalleFacturaComponent
+    DetalleFacturaComponent,
+    DetalleDataComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 package com.tinguiclick.pedidos.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,12 @@ public class PedidosService implements IPedidosService{
 	public void delete(Long id) {
 		
 		pedidoDao.deleteById(id);
+	}
+
+	@Override
+	public List<Pedido> findByFechas(Date desde, Date hasta) {
+		
+		return pedidoDao.findByFechas(desde, hasta);
 	}
 	
 }

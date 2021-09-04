@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tinguiclick.pedidos.model.Factura;
 import com.tinguiclick.pedidos.model.Pedido;
+import com.tinguiclick.pedidos.service.IFacturaService;
 import com.tinguiclick.pedidos.service.IPedidosService;
 import com.tinguiclick.service.IAliadosService;
 import com.tinguiclick.service.IDomiciliariosService;
@@ -48,6 +50,9 @@ public class PedidosRestController {
 	@Autowired
 	private IDomiciliariosService domiciliariosService;
 	
+	@Autowired
+	private IFacturaService facturaService;
+	
 	//Servicios Rest tabla - Tipo Identificacion 
 	
 	private final Logger log = LoggerFactory.getLogger(PedidosRestController.class);
@@ -56,6 +61,16 @@ public class PedidosRestController {
 	@GetMapping("/pedidos")
 	public List<Pedido> index (){
 		return pedidosService.findAll();
+	}
+	
+	@GetMapping("/pedidos/filtro/{desde, hasta}")
+	public List<Pedido> pedidosFiltro(@PathVariable Date desde, @PathVariable Date hasta){		
+		return pedidosService.findByFechas(desde, hasta);
+	}
+	
+	@GetMapping("/pedidos/factura/filtro/{desde, hasta}")
+	public List<Factura> facturasFiltro(@PathVariable Date desde, @PathVariable Date hasta){		
+		return facturaService.findByFechas(desde, hasta);
 	}
 		
 	//servicio que muestra un tipo de identificacion
@@ -102,6 +117,8 @@ public class PedidosRestController {
 		try { 
 			pedidoN.setFechaRegistro(new Date());
 			pedidoN.setAlerta("verde");
+			 
+			
 			pedidoNew= pedidosService.save(pedidoN);
 
 		}catch(DataAccessException e) {
@@ -169,7 +186,104 @@ public class PedidosRestController {
 		return new ResponseEntity<Map<String, Object>> (response,HttpStatus.CREATED);
 	}
 	
-	//servicio que elimina el tipo de identificacion
+	//servicio que recibe el pedido
+		@PutMapping("/pedidos/recibido/{id}")
+		public ResponseEntity<?>  recibirPedido(@Valid @RequestBody Pedido pedido, BindingResult result, @PathVariable Long id) {
+			Pedido pedidoActual= pedidosService.findById(id);
+			Pedido pedidoUpdated = null;
+			Map<String, Object> response = new HashMap<>();
+			
+			if(result.hasErrors()) {
+				
+				List<String> errors= result.getFieldErrors().stream().map(err ->
+					"Campo: "+err.getField()+" "+err.getDefaultMessage()
+				).collect(Collectors.toList());
+				
+				response.put("errors", errors);
+			    return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+			}
+			
+			if(pedidoActual == null) {
+				  response.put("mensaje", "Error, no se pudo editar, el pedido ID: ".concat(id.toString().concat(" no existe en la base de datos!"))); 	
+				  return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+			}
+			           
+			try{
+					
+				pedidoActual.setAlerta("amarillo");
+				pedidoActual.setFechaModificacion(new Date());	
+				pedidoActual.setEstado((byte) 2);
+				
+				pedidoUpdated=pedidosService.save(pedidoActual);
+			
+			}catch(DataAccessException e) {
+				response.put("mensaje", "Error al actualizar el pedido en la base de datos!");
+				response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			response.put("mensaje", "El pedido ha sido actualizado con Exito!");
+			response.put("pedido", pedidoUpdated);
+			return new ResponseEntity<Map<String, Object>> (response,HttpStatus.CREATED);
+		}
+		
+		//servicio que entrega el pedido 
+		@PutMapping("/pedidos/entregado/{id}")
+		public ResponseEntity<?>  entregarPedido(@Valid @RequestBody Pedido pedido, BindingResult result, @PathVariable Long id) {
+			Pedido pedidoActual= pedidosService.findById(id);
+			Pedido pedidoUpdated = null;
+			Factura factura = new Factura();
+			
+			Map<String, Object> response = new HashMap<>();
+			
+			if(result.hasErrors()) {
+				
+				List<String> errors= result.getFieldErrors().stream().map(err ->
+					"Campo: "+err.getField()+" "+err.getDefaultMessage()
+				).collect(Collectors.toList());
+				
+				response.put("errors", errors);
+			    return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+			}
+			
+			if(pedidoActual == null) {
+				  response.put("mensaje", "Error, no se pudo editar, el pedido ID: ".concat(id.toString().concat(" no existe en la base de datos!"))); 	
+				  return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+			}
+			
+			try{
+				
+				// registrar factura
+				factura.setAliadoId(pedidoActual.getAliado());
+				factura.setDomiciliarioId(pedidoActual.getDomiciliario());
+				factura.setFechaRegistro(new Date());
+				factura.setObservacion(pedidoActual.getObservacion());
+				factura.setTipo(pedidoActual.getTipo());
+				factura.setUbicacion(pedidoActual.getDireccionCliente());
+				factura.setValor(Double.parseDouble(pedidoActual.getValor()));
+				factura.setTarifaId(pedidoActual.getTarifa());
+				
+				facturaService.save(factura);
+				
+				// actualizar pedido
+				pedidoActual.setAlerta("rojo");
+				pedidoActual.setEstado((byte) 3);
+				pedidoActual.setFechaModificacion(new Date());
+																				
+				pedidoUpdated=pedidosService.save(pedidoActual);
+						
+			
+			}catch(DataAccessException e) {
+				response.put("mensaje", "Error al actualizar el pedido en la base de datos!");
+				response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			response.put("mensaje", "El pedido ha sido actualizado con Exito!");
+			response.put("pedido", pedidoUpdated);
+			return new ResponseEntity<Map<String, Object>> (response,HttpStatus.CREATED);
+		}
+	
+	
+	//servicio que elimina el pedido
 	@DeleteMapping("/pedidos/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		

@@ -1,0 +1,150 @@
+<div *ngIf="modalservice.modal" class="abrir-modal animacion fadeIn">
+
+    <div *ngIf="modalservice.modal" class="modal my-5" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background-color: #089fd6;">
+                    <h5 class="modal-title">{{titulo}}</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form #detallePedidoForm="ngForm">                   
+                            
+                            <div class="tab-content" id="myTabContent">
+                                <div class="form-row"> 
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label for="nombre" style="font-size: medium">Nombre Cliente</label>
+                                        <input type="text" class="form-control" placeholder="Nombre Cliente"
+                                            [(ngModel)]="pedido.nombreCliente" name="nombreCliente" required maxlength="250"
+                                            #nombre="ngModel" readonly>
+                                    </div>  
+
+                                    <div class="form-group col-md-6">
+                                        <label for="direccion" style="font-size: medium">Dirección Cliente</label>
+                                        <input type="text" class="form-control" placeholder="Dirección Cliente"
+                                            [(ngModel)]="pedido.direccionCliente" name="direccionCliente" required maxlength="250"
+                                            #direccion="ngModel" readonly>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="celular" style="font-size: medium">Celular Cliente</label>
+                                        <input type="number" class="form-control" placeholder="Celular Cliente"
+                                            [(ngModel)]="pedido.numeroCelular" name="numeroCelular" required max="20"
+                                            #celular="ngModel" readonly>
+                                    </div>
+
+                                    <div class="form-group col-md-5">
+                                        <label for="aliado" style="font-size: medium">Aliado</label>
+                                        <select  class="form-control "
+                                            [(ngModel)]="pedido.aliado" name="aliado" required #aliado="ngModel" disabled>
+                                            <option [ngValue]="undefined" selected>
+                                                Seleccionar
+                                            </option>
+                                            <option *ngFor="let ali of aliados" [ngValue]="ali.aliadoId">
+                                                {{ali.razonSocial}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="domiciliario" style="font-size: medium">Domiciliario</label>
+                                        <select  class="form-control "
+                                            [(ngModel)]="pedido.domiciliario" name="domiciliario" #domiciliario="ngModel" disabled>
+                                            <option [ngValue]="undefined" selected>
+                                                Seleccionar
+                                            </option>
+                                            <option *ngFor="let dom of domiciliarios" [ngValue]="dom.domiciliarioId">
+                                                {{dom.nombres}}</option>
+                                        </select>
+                                        
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="detalle" style="font-size: medium">Detalle</label>
+                                        <textarea class="form-control" rows="5" placeholder="Detalle" [(ngModel)]="pedido.detalle" name="detalle"
+                                        maxlength="500" readonly></textarea>
+                                    </div> 
+
+                                    <div class="form-group col-md-4">
+                                        <label for="valor" style="font-size: medium">Valor</label>
+                                        <input type="text" class="form-control" placeholder="Valor"
+                                            [(ngModel)]="pedido.valor" name="valor" maxlength="250" readonly>
+                                    </div>
+                                                                          
+
+                                    <div class="form-group col-md-4" *ngIf="pedido.pedidoId">
+                                        <label for="estado" style="font-size: medium">Estado</label>
+                                        <select class="form-control" name="estado"
+                                        [(ngModel)]="pedido.estado" name="estado" required #estado="ngModel" disabled>
+                                            <option [ngValue]="undefined" selected>Seleccionar
+                                            <option [ngValue]="0">Registrado
+                                            <option [ngValue]="1">Asignado
+                                            <option [ngValue]="2">En Camino
+                                            <option [ngValue]="3">Entregado   
+                                            <option [ngValue]="4">Cancelado      
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="tipo" style="font-size: medium">Tipo</label>
+                                        <select class="form-control" name="tipo"
+                                        [(ngModel)]="pedido.tipo" name="tipo" required #tipo="ngModel" disabled>
+                                            <option [ngValue]="undefined" selected>Seleccionar
+                                            <option [ngValue]="0">Restaurante
+                                            <option [ngValue]="1">Click-Favor
+                                            <option [ngValue]="2">Mercado
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-4">
+                                        <label for="municipio" style="font-size: medium">Municipio</label>
+                                        <select class="form-control" name="municipio"
+                                        [(ngModel)]="pedido.municipio" name="municipio" required #municipio="ngModel" disabled>
+                                            <option [ngValue]="undefined" selected>Seleccionar
+                                            <option [ngValue]="0">Funza
+                                            <option [ngValue]="1">Mosquera
+                                            <option [ngValue]="2">Madrid
+                                            <option [ngValue]="3">Otro  
+                                            <option [ngValue]="4">No Aplica     
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="ciudad" style="font-size: medium">Ciudad</label>
+                                        <select class="form-control" name="ciudad"
+                                        [(ngModel)]="pedido.ciudad" name="ciudad" #ciudad="ngModel" disabled>
+                                            <option [ngValue]="undefined" selected>Seleccionar
+                                            <option [ngValue]="0">Bogotá
+                                            <option [ngValue]="1">No Aplica    
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="pago" style="font-size: medium">Método Pago</label>
+                                        <select class="form-control" name="pago"
+                                        [(ngModel)]="pedido.metodoPago" name="metodoPago" required #pago="ngModel" disabled>
+                                            <option [ngValue]="undefined" selected>Seleccionar
+                                            <option [ngValue]="0">Efectivo
+                                            <option [ngValue]="1">Datafono
+                                            <option [ngValue]="2">Nequi - Daviplata    
+                                        </select>
+                                    </div>
+
+                                </div>    
+                               
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

@@ -22,10 +22,6 @@ public class Factura implements Serializable{
 	@Column(nullable=true)
 	private Date fechaRegistro;
 	
-	@Size(max=5)
-	@Column(nullable=true)
-	private String horaRegistro;
-	
 	@Column(nullable=true)
 	private Long domiciliarioId;
 	
@@ -40,6 +36,9 @@ public class Factura implements Serializable{
 	
 	@Column(nullable=true)
 	private String ubicacion;
+	
+	@Column(nullable=true)
+	private Long tarifaId;
 	
 	@Size(max=500)
 	@Column(nullable=true)
@@ -62,14 +61,6 @@ public class Factura implements Serializable{
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	public String getHoraRegistro() {
-		return horaRegistro;
-	}
-
-	public void setHoraRegistro(String horaRegistro) {
-		this.horaRegistro = horaRegistro;
-	}
-	
 	public Long getDomiciliarioId() {
 		return domiciliarioId;
 	}
@@ -117,6 +108,15 @@ public class Factura implements Serializable{
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
+
+	public Long getTarifaId() {
+		return tarifaId;
+	}
+
+	public void setTarifaId(Long tarifaId) {
+		this.tarifaId = tarifaId;
+	}
+
 
 
 

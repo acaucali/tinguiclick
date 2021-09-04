@@ -6,6 +6,9 @@ import { ModalPedidosService } from './detalle-pedido/modalpedidos.service';
 import { Pedido } from './model/pedido';
 import swal from 'sweetalert2';
 import { PedidosService } from './model/pedidos.service';
+import { ModalDetalleDataService } from './detalle/modaldetalle.service';
+import { Aliados } from '../aliados/model/aliados';
+import { AliadosService } from '../aliados/model/aliados.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -20,6 +23,8 @@ export class PedidosComponent implements OnInit {
   paginador: any;
   pedidoSeleccionado: Pedido;
 
+  public aliados: Aliados[];
+
   elements: any = [];
   previous: any = [];
 
@@ -27,11 +32,14 @@ export class PedidosComponent implements OnInit {
   lastItemIndex;
 
   constructor(private pedidosService: PedidosService ,public modalservice: ModalPedidosService, 
-    public authService: AuthService,
+    public modalDetalle: ModalDetalleDataService,
+    public authService: AuthService, private aliadosService: AliadosService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.aliadosService.getAliadosList().subscribe(response => this.aliados = response);
     this.getPedidos();
+    
   }
 
   delete(pedido: Pedido): void{
@@ -62,10 +70,73 @@ export class PedidosComponent implements OnInit {
       }
     })
   }
+
+  recibido(pedido: Pedido): void{
+    swal.fire({
+      title: '¿Ya recibiste el pedido?',
+      text:  ``,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      confirmButtonText: 'Si, ya lo recibi!',
+      cancelButtonText: 'No, estoy esperando!',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33'
+    }).then((result) => {
+      if (result.value) {
+        this.pedidosService.recibido(pedido).subscribe(
+          response =>{
+            this.getPedidos();
+            swal.fire(
+              'Pedido recibido!',
+              'El pedido se ha asignado con éxito',
+              'success'
+            )
+          }
+        )
+        
+      }
+    })
+  }
+
+  entregado(pedido: Pedido): void{
+    swal.fire({
+      title: '¿Ya se entrego el pedido?',
+      text:  ``,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      confirmButtonText: 'Si, entregado!',
+      cancelButtonText: 'No, estoy en ello!',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33'
+    }).then((result) => {
+      if (result.value) {
+        this.pedidosService.entregado(pedido).subscribe(
+          response =>{
+            this.getPedidos();
+            swal.fire(
+              'Pedido entregado!',
+              'El pedido se ha entregado con éxito',
+              'success'
+            )
+          }
+        )
+        
+      }
+    })
+  }
   
   abrirModal(pedido: Pedido){
     this.pedidoSeleccionado= pedido;
     this.modalservice.abrirModal();
+  }
+
+  detalle(pedido: Pedido){
+    this.pedidoSeleccionado= pedido;
+    this.modalDetalle.abrirModal();
   }
 
   crearPedidos(){

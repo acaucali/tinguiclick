@@ -1,4 +1,5 @@
 <detalle-pedido [pedido]="pedidoSeleccionado"></detalle-pedido>
+<detalle-data [pedido]="pedidoSeleccionado"></detalle-data>
 
 <div class="card border-dark mb-5 my-5 ">
     <div class="card-header"><h6>Pedidos</h6></div>
@@ -11,9 +12,8 @@
           <i class="fa fa-calendar fa-lg"></i></button>
         
         <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="generarFacturas()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
-          <i class="fa fa-hourglass-end fa-lg"></i></button>
-        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="generarFacturas()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
-          <i class="fa fa-building fa-lg"></i></button>  
+          <i class="fa fa-filter fa-lg"></i></button>
+        
       </div>
   
       <div *ngIf="pedidos?.length==0" class="alert alert-info">
@@ -29,7 +29,6 @@
                 <td>Nombre Cliente</td>
                 <td>Dirección Cliente</td>
                 <td>Numero Contacto</td>
-                <td>Aliado</td>
                 <td>Valor</td>
                 <td>Fecha Registro</td>
               </tr>
@@ -38,9 +37,13 @@
               <tr *ngFor="let el of elements | paginate: {itemsPerPage: 10, currentPage: pagePed, id: 'pagePedi'}">
                 <td width="50" >
                     &nbsp;
-                  <i class="fas fa-edit" (click)="abrirModal(el)" style="cursor: pointer;" *ngIf="authService.hasRole('ROLE_ADMIN')"></i>
+                  <i class="fas fa-edit" (click)="abrirModal(el)" style="cursor: pointer;" *ngIf="authService.hasRole('ROLE_ADMIN')" ></i>
                   &nbsp;&nbsp;
-                  <i class="fa fa-eye" (click)='delete(el)' style="cursor: pointer;"></i>
+                  <i class="fa fa-eye" (click)='detalle(el)' style="cursor: pointer;"></i>
+                  &nbsp;&nbsp;
+                  <i class="fa fa-hourglass-end" (click)='recibido(el)' style="cursor: pointer;" *ngIf="el.estado == 0"></i>
+                  &nbsp;&nbsp;
+                  <i class="fa fa-building" (click)='entregado(el)' style="cursor: pointer;" *ngIf="el.estado == 2"></i>
                 </td>
                 <td>
                   <div id="red" *ngIf="el.alerta == 'rojo'"></div>
@@ -51,9 +54,9 @@
                 <td>{{el.nombreCliente}} </td>
                 <td>{{el.direccionCliente}} </td>
                 <td>{{el.numeroCelular}} </td>
-                <td>{{el.aliado}} </td>
                 <td>{{el.valor}} </td>
-                <td>{{el.fechaRegistro}} </td>
+                <td>{{el.fechaRegistro | date:'medium'}} </td>
+                
                 
               </tr>
             </tbody>

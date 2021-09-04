@@ -1,5 +1,6 @@
 package com.tinguiclick.pedidos.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tinguiclick.pedidos.dao.IFacturaDao;
 import com.tinguiclick.pedidos.model.Factura;
+import com.tinguiclick.pedidos.model.Pedido;
 
 
 
@@ -42,6 +44,12 @@ public class FacturaService implements IFacturaService{
 	public void delete(Long id) {
 		
 		facturaDao.deleteById(id);
+	}
+	
+	@Override
+	public List<Factura> findByFechas(Date desde, Date hasta) {
+		
+		return facturaDao.findByFechas(desde, hasta);
 	}
 	
 }

@@ -90,7 +90,37 @@ export class PedidosService {
         })
       );
     }
+
+    recibido(pedido: Pedido): Observable<any>{
+      return this.http.put<any>(`${this.urlEndPoint}/recibido/${pedido.pedidoId}`, pedido).pipe(
+        catchError(e =>{
+          if(e.status==400){
+            return throwError(e);
+          }
+          if(e.error.mensaje){ 
+            console.error(e.error.mensaje);
+            swal.fire(e.error.mensaje, e.error.error, 'error');
+          }           
+          return throwError(e);
+        })
+      );
+    }
   
-  
+    entregado(pedido: Pedido): Observable<any>{
+      return this.http.put<any>(`${this.urlEndPoint}/entregado/${pedido.pedidoId}`, pedido).pipe(
+        catchError(e =>{
+          if(e.status==400){
+            return throwError(e);
+          }
+          if(e.error.mensaje){ 
+            console.error(e.error.mensaje);
+            swal.fire(e.error.mensaje, e.error.error, 'error');
+          }           
+          return throwError(e);
+        })
+      );
+    }
+
+      
   }
   
