@@ -143,6 +143,10 @@ export class PedidosComponent implements OnInit {
     this.pedidoSeleccionado = new Pedido();
     this.modalservice.abrirModal();
   }
+
+  generarFacturas(){
+    
+  }
   
   getPedidos(){
     this.pedidos = null;
