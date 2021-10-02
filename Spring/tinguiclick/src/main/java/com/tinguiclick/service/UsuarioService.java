@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -57,9 +58,12 @@ public class UsuarioService implements UserDetailsService, IUsuarioService{
 	
 	@Transactional(readOnly = true)
 	public List<Usuario> findAll() {
-		return (List<Usuario>) usuarioDao.findAll();
+		return (List<Usuario>) usuarioDao.findAll(sortByNombreAsc());
 	}
 
+	private Sort sortByNombreAsc() {
+	   return new Sort(Sort.Direction.ASC, "nombres");
+	}
 		
 	@Transactional(readOnly = true)
 	public Usuario findById(Long id) {

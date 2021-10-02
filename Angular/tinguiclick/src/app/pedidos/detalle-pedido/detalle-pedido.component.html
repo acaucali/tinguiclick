@@ -104,7 +104,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-group col-md-3" *ngIf="pedido.pedidoId">
+                                        <div class="form-group col-md-3" >
                                             <label for="tarifa" style="font-size: medium">Tarifa</label>
                                             <select  class="form-control "
                                                 [(ngModel)]="pedido.tarifa" name="tarifa" required #tarifa="ngModel">
@@ -201,12 +201,13 @@
 
                                         <div class="form-group col-md-6">
                                             <label for="direccion" style="font-size: medium">Dirección Cliente</label>
-                                            <input type="text" class="form-control" placeholder="Dirección Cliente"
-                                                [(ngModel)]="pedido.direccionCliente" name="direccionCliente" required maxlength="250"
-                                                #direccion="ngModel">
+
+                                            <textarea class="form-control" rows="5" placeholder="Dirección Cliente" [(ngModel)]="pedido.direccionCliente" name="direccionCliente"
+                                            maxlength="500" required #direccionCliente="ngModel"></textarea>
+                                         
                                             <div class="alert alert-danger"
-                                                *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
-                                                <div *ngIf="direccion.errors.required">
+                                                *ngIf="direccionCliente.invalid && (direccionCliente.dirty || direccionCliente.touched)">
+                                                <div *ngIf="direccionCliente.errors.required">
                                                     Dirección es requerido
                                                 </div>
                                             </div>

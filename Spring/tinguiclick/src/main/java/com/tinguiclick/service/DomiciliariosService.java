@@ -3,6 +3,7 @@ package com.tinguiclick.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,11 @@ public class DomiciliariosService implements IDomiciliariosService{
 	@Override
 	@Transactional(readOnly = true)
 	public List<Domiciliarios> findAll() {
-		return (List<Domiciliarios>) domiciliariosDao.findAll();
+		return (List<Domiciliarios>) domiciliariosDao.findAll(sortByNombreAsc());
+	}
+	
+	private Sort sortByNombreAsc() {
+	   return new Sort(Sort.Direction.ASC, "nombres");
 	}
 
 	@Override

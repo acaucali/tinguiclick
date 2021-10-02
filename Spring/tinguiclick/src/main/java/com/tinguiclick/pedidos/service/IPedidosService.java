@@ -15,6 +15,12 @@ public interface IPedidosService {
 	public List<Pedido> findByFechas(Date desde, Date hasta);
 	
 	
+	public List<Pedido> findByDomiciliario(Long domiciliario);
+	
+	
+	public List<Pedido> findByAliado(Long aliado);
+	
+	
 	public Pedido findById(Long id);
 
 	

@@ -32,7 +32,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let el of elements | paginate: {itemsPerPage: 10, currentPage: pageDomi, id: 'pageDom'}">
+            <tr *ngFor="let el of elements | paginate: {itemsPerPage: 15, currentPage: pageDomi, id: 'pageDom'}">
               <td width="50"  *ngIf="authService.hasRole('ROLE_ADMIN')">
                   &nbsp;
                 <i class="fas fa-edit" (click)="abrirModal(el)" style="cursor: pointer;" ></i>

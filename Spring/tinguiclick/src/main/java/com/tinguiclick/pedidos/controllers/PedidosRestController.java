@@ -63,6 +63,16 @@ public class PedidosRestController {
 		return pedidosService.findAll();
 	}
 	
+	@GetMapping("/pedidos/filtro/aliado/{id}")
+	public List<Pedido> pedidosAliado(@PathVariable Long id){		
+		return pedidosService.findByAliado(id);
+	}
+	
+	@GetMapping("/pedidos/filtro/domiciliario/{id}")
+	public List<Pedido> pedidosDomiciliario(@PathVariable Long id){		
+		return pedidosService.findByDomiciliario(id);
+	}
+		
 	@GetMapping("/pedidos/filtro/{desde, hasta}")
 	public List<Pedido> pedidosFiltro(@PathVariable Date desde, @PathVariable Date hasta){		
 		return pedidosService.findByFechas(desde, hasta);

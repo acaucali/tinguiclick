@@ -9,6 +9,8 @@ import { PedidosService } from './model/pedidos.service';
 import { ModalDetalleDataService } from './detalle/modaldetalle.service';
 import { Aliados } from '../aliados/model/aliados';
 import { AliadosService } from '../aliados/model/aliados.service';
+import { Domiciliarios } from '../domiciliarios/model/domiciliarios';
+import { DomiciliariosService } from '../domiciliarios/model/domiciliarios.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -24,22 +26,29 @@ export class PedidosComponent implements OnInit {
   pedidoSeleccionado: Pedido;
 
   public aliados: Aliados[];
+  public domiciliarios: Domiciliarios[];
+
+  public fechaInicio: Date;
+  public fechaFinal: Date;
+  public aliado: number;
+  public domi: number;
 
   elements: any = [];
   previous: any = [];
+
 
   firstItemIndex;
   lastItemIndex;
 
   constructor(private pedidosService: PedidosService ,public modalservice: ModalPedidosService, 
     public modalDetalle: ModalDetalleDataService,
-    public authService: AuthService, private aliadosService: AliadosService,
+    public authService: AuthService, private aliadosService: AliadosService, private domiciliariosService: DomiciliariosService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.aliadosService.getAliadosList().subscribe(response => this.aliados = response);
+    this.domiciliariosService.getDomiciliariosList().subscribe(response => this.domiciliarios = response);
     this.getPedidos();
-    
   }
 
   delete(pedido: Pedido): void{

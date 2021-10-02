@@ -19,7 +19,7 @@ import { TokenInterceptor } from './configuracion/interceptors/token.interceptor
 import { AuthInterceptor } from './configuracion/interceptors/auth.interceptor';
 import { AgmCoreModule } from '@agm/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatTreeModule, MatIconModule, MatButtonModule, MatNativeDateModule } from '@angular/material';
+import { MatTreeModule, MatIconModule, MatButtonModule, MatNativeDateModule, MatSelectModule } from '@angular/material';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { UsuariosService } from './configuracion/usuarios/usuario.service';
 import { ConfigComponent } from './configuracion/archivosinterfaz/config.component';
@@ -39,7 +39,6 @@ import { DetallePedidoComponent } from './pedidos/detalle-pedido/detalle-pedido.
 import { PedidosService } from './pedidos/model/pedidos.service';
 import { DetalleFacturaComponent } from './pedidos/detalle-factura/detalle-factura.component';
 import { DetalleDataComponent } from './pedidos/detalle/detalle.component';
-
 
 
 @NgModule({
@@ -73,6 +72,7 @@ import { DetalleDataComponent } from './pedidos/detalle/detalle.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTreeModule, MatIconModule, MatButtonModule,
+    MatSelectModule, 
     MDBBootstrapModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: ''
