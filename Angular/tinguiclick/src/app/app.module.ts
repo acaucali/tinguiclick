@@ -39,6 +39,7 @@ import { DetallePedidoComponent } from './pedidos/detalle-pedido/detalle-pedido.
 import { PedidosService } from './pedidos/model/pedidos.service';
 import { DetalleFacturaComponent } from './pedidos/detalle-factura/detalle-factura.component';
 import { DetalleDataComponent } from './pedidos/detalle/detalle.component';
+import { FacturaComponent } from './pedidos/factura/factura.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { DetalleDataComponent } from './pedidos/detalle/detalle.component';
     DetallePedidoComponent,
     DetalleFacturaComponent,
     DetalleDataComponent,
+    FacturaComponent,
   ],
   imports: [
     BrowserModule,

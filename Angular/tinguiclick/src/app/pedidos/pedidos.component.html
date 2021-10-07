@@ -1,5 +1,6 @@
 <detalle-pedido [pedido]="pedidoSeleccionado"></detalle-pedido>
 <detalle-data [pedido]="pedidoSeleccionado"></detalle-data>
+<factura></factura>
 
 <div class="card border-dark mb-5 my-5 ">
     <div class="card-header"><h5>Pedidos</h5></div>
@@ -8,7 +9,7 @@
       <div class="my-2 text-left">
         <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="crearPedidos()" type="button" placement="bottom" ngbTooltip="Crear Pedido">
           <i class="far fa-plus-square fa-lg"></i></button>
-        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="generarFacturas()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="generarFactura()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
           <i class="fa fa-calendar fa-lg"></i></button>
        
       </div>

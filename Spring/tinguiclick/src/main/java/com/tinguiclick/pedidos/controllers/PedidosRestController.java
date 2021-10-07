@@ -1,5 +1,8 @@
 package com.tinguiclick.pedidos.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -8,10 +11,17 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -23,15 +33,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tinguiclick.model.Aliados;
+import com.tinguiclick.model.Domiciliarios;
+import com.tinguiclick.model.Tarifa;
 import com.tinguiclick.pedidos.model.Factura;
 import com.tinguiclick.pedidos.model.Pedido;
 import com.tinguiclick.pedidos.service.IFacturaService;
 import com.tinguiclick.pedidos.service.IPedidosService;
 import com.tinguiclick.service.IAliadosService;
 import com.tinguiclick.service.IDomiciliariosService;
-
+import com.tinguiclick.service.ITarifaService;
+import org.springframework.http.MediaType;
 
 
 @CrossOrigin(origins= {"http://localhost:4200","*"})
@@ -52,6 +67,9 @@ public class PedidosRestController {
 	
 	@Autowired
 	private IFacturaService facturaService;
+	
+	@Autowired
+	private ITarifaService tarifasService;
 	
 	//Servicios Rest tabla - Tipo Identificacion 
 	
@@ -309,6 +327,75 @@ public class PedidosRestController {
 		}
 		response.put("mensaje", "El pedido ha sido eliminado con Exito!");
 		return new ResponseEntity<Map<String, Object>> (response,HttpStatus.OK);
+	}
+	
+	@GetMapping("/pedidos/export")	
+	public @ResponseBody ResponseEntity<InputStreamResource> exportFactura() throws Exception{
+	
+		ByteArrayInputStream stream = exportData();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename=factura.xls");
+		
+		 return ResponseEntity
+		            .ok()
+		            .headers(headers)
+		            .body(new InputStreamResource(stream));
+		
+	}
+	
+	public ByteArrayInputStream exportData() throws IOException, Exception {
+		
+		String[] columns = {"Lugar", "Observacion", "Aliado", "Domiciliario", "Valor"};
+		
+		Workbook workbook = new HSSFWorkbook();
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		
+		Sheet sheet = workbook.createSheet("Pedidos");
+		Row row = sheet.createRow(0);
+		
+		for(int i=0; i < columns.length; i++) {
+			Cell cell = row.createCell(i);
+			cell.setCellValue(columns[i]);
+		}
+		
+		List<Pedido> pedidos = pedidosService.findAll();
+		int initRow = 1;
+		
+		for(Pedido pedido: pedidos) {
+			
+			row = sheet.createRow(initRow);
+			
+			row.createCell(0).setCellValue(pedido.getDireccionCliente());
+			row.createCell(1).setCellValue(pedido.getDetalle());
+			
+			if(pedido.getAliado() != null) {
+				Aliados ali = aliadosService.findById(pedido.getAliado());
+				row.createCell(2).setCellValue(ali.getRazonSocial());
+			}else {
+				row.createCell(2).setCellValue("");
+			}
+			
+			if(pedido.getDomiciliario() != null) {
+				Domiciliarios dom = domiciliariosService.findById(pedido.getDomiciliario());
+				row.createCell(3).setCellValue(dom.getNombres());
+			}else {
+				row.createCell(3).setCellValue("");
+			}
+			
+			if(pedido.getTarifa() != null) {
+				Tarifa tar = tarifasService.findById(pedido.getTarifa());
+				row.createCell(4).setCellValue(tar.getValor());
+			}else {
+				row.createCell(4).setCellValue("");
+			}
+						
+			
+			initRow++;
+		}
+		
+		workbook.write(stream);
+		workbook.close();
+		return new ByteArrayInputStream(stream.toByteArray());
 	}
 	
 }

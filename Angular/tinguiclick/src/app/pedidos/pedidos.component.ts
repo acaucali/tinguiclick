@@ -11,6 +11,7 @@ import { Aliados } from '../aliados/model/aliados';
 import { AliadosService } from '../aliados/model/aliados.service';
 import { Domiciliarios } from '../domiciliarios/model/domiciliarios';
 import { DomiciliariosService } from '../domiciliarios/model/domiciliarios.service';
+import { ModalFacturaService } from './factura/modalfactura.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -41,7 +42,7 @@ export class PedidosComponent implements OnInit {
   lastItemIndex;
 
   constructor(private pedidosService: PedidosService ,public modalservice: ModalPedidosService, 
-    public modalDetalle: ModalDetalleDataService,
+    public modalDetalle: ModalDetalleDataService, public modalFactura: ModalFacturaService,
     public authService: AuthService, private aliadosService: AliadosService, private domiciliariosService: DomiciliariosService,
     private activatedRoute: ActivatedRoute) { }
 
@@ -141,6 +142,10 @@ export class PedidosComponent implements OnInit {
   abrirModal(pedido: Pedido){
     this.pedidoSeleccionado= pedido;
     this.modalservice.abrirModal();
+  }
+
+  generarFactura(){
+    this.modalFactura.abrirModal();
   }
 
   detalle(pedido: Pedido){
