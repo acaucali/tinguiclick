@@ -40,6 +40,7 @@ import { PedidosService } from './pedidos/model/pedidos.service';
 import { DetalleFacturaComponent } from './pedidos/detalle-factura/detalle-factura.component';
 import { DetalleDataComponent } from './pedidos/detalle/detalle.component';
 import { FacturaComponent } from './pedidos/factura/factura.component';
+import { ExcelService } from './pedidos/util/excelservice';
 
 
 @NgModule({
@@ -81,7 +82,7 @@ import { FacturaComponent } from './pedidos/factura/factura.component';
     })
   ],
   providers: [UsuariosService, TipoIdentificacionService, DomiciliariosService, AliadosService, TarifaService,
-    PedidosService,
+    PedidosService, ExcelService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],

@@ -11,6 +11,7 @@ import { PedidosComponent } from '../pedidos.component';
 import { ModalFacturaService } from './modalfactura.service';
 import swal from 'sweetalert2';
 import { URL_BACKEND } from 'src/app/configuracion/parametros/config';
+import { ExcelService } from '../util/excelservice';
 
 @Component({
   selector: 'factura',
@@ -25,12 +26,14 @@ export class FacturaComponent implements OnInit {
   public aliados: Aliados[];
   public domiciliarios: Domiciliarios[];
 
-  
+  public fechaInicial: Date;
+  public fechafinal: Date;
+
   titulo: string = "Generar factura";
   constructor(private pedidoService: PedidosService, private router: Router, 
     private activatedRoute: ActivatedRoute, private pedidoComponent: PedidosComponent,
     public modalservice: ModalFacturaService, private domiciliariosService: DomiciliariosService, 
-    private aliadosService: AliadosService, private tarifasService: TarifaService
+    private aliadosService: AliadosService, private tarifasService: TarifaService, private excelService: ExcelService
    ) { }
 
   ngOnInit() {
