@@ -3,6 +3,7 @@ package com.tinguiclick.pedidos.controllers;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -91,7 +92,7 @@ public class PedidosRestController {
 		return pedidosService.findByDomiciliario(id);
 	}
 		
-	@GetMapping("/pedidos/filtro/{desde, hasta}")
+	@GetMapping("/pedidos/filtro/{desde},{hasta}")
 	public List<Pedido> pedidosFiltro(@PathVariable Date desde, @PathVariable Date hasta){		
 		return pedidosService.findByFechas(desde, hasta);
 	}
@@ -100,7 +101,47 @@ public class PedidosRestController {
 	public List<Factura> facturasFiltro(@PathVariable Date desde, @PathVariable Date hasta){		
 		return facturaService.findByFechas(desde, hasta);
 	}
+	
+	@GetMapping(path="/pedidos/factura/excel/{desde, hasta}", produces= "application/json")
+	public List<String[]> pedidosFactura(@PathVariable Date desde, @PathVariable Date hasta){		
 		
+		List<String[]> respuesta = new ArrayList<>();
+		List<Pedido> pedidos = 	pedidosService.findByFechas(desde, hasta);
+				
+		
+		for(Pedido ped: pedidos) {
+			
+			String[] objList = new String[5];
+			
+			if(ped.getAliado() != null) {
+				Aliados ali = aliadosService.findById(ped.getAliado());
+				objList[0]=ali.getRazonSocial();
+			}else {
+				objList[0]="";
+			}
+			
+			if(ped.getDomiciliario() != null) {
+				Domiciliarios dom = domiciliariosService.findById(ped.getDomiciliario());
+				objList[1]=dom.getNombres();
+			}else {
+				objList[1]="";
+			}
+						
+			objList[2]=ped.getDireccionCliente();
+			objList[3]=ped.getDetalle();
+			if(ped.getTarifa() != null) {
+				Tarifa tar= tarifasService.findById(ped.getTarifa());
+				objList[4]=tar.getValor();
+			}else {
+				objList[4]="";
+			}
+			
+			respuesta.add(objList);
+		}
+		
+		return respuesta;				
+	}		
+	
 	//servicio que muestra un tipo de identificacion
 	@GetMapping("/pedidos/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {
@@ -330,7 +371,7 @@ public class PedidosRestController {
 	}
 	
 	@GetMapping("/pedidos/export")	
-	public @ResponseBody ResponseEntity<InputStreamResource> exportFactura() throws Exception{
+	public ResponseEntity<InputStreamResource> exportFactura() throws Exception{
 	
 		ByteArrayInputStream stream = exportData();
 		HttpHeaders headers = new HttpHeaders();

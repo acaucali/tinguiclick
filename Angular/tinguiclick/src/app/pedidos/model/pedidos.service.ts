@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
 import { URL_BACKEND } from 'src/app/configuracion/parametros/config';
 import { AuthService } from 'src/app/configuracion/parametros/auth.service';
 import { Pedido } from './pedido';
-import { ExcelService } from '../util/excelservice';
+
 
 
 
@@ -23,7 +23,8 @@ export class PedidosService {
     private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
     public pedidos: Pedido[];
   
-    constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
+    constructor(private http: HttpClient, private router: Router, private authService: AuthService,
+      ) { }
   
     getPedidosList(){
       return this.http.get(this.urlEndPoint).pipe(
@@ -123,6 +124,9 @@ export class PedidosService {
       );
     }
 
+    generarExcel() {
+       
+    }
       
   }
   

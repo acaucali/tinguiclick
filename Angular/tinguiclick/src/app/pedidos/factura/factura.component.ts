@@ -11,7 +11,9 @@ import { PedidosComponent } from '../pedidos.component';
 import { ModalFacturaService } from './modalfactura.service';
 import swal from 'sweetalert2';
 import { URL_BACKEND } from 'src/app/configuracion/parametros/config';
-import { ExcelService } from '../util/excelservice';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/configuracion/parametros/auth.service';
+
 
 @Component({
   selector: 'factura',
@@ -33,7 +35,8 @@ export class FacturaComponent implements OnInit {
   constructor(private pedidoService: PedidosService, private router: Router, 
     private activatedRoute: ActivatedRoute, private pedidoComponent: PedidosComponent,
     public modalservice: ModalFacturaService, private domiciliariosService: DomiciliariosService, 
-    private aliadosService: AliadosService, private tarifasService: TarifaService, private excelService: ExcelService
+    private aliadosService: AliadosService, private tarifasService: TarifaService,
+    private http: HttpClient, private authService: AuthService
    ) { }
 
   ngOnInit() {
@@ -44,7 +47,8 @@ export class FacturaComponent implements OnInit {
   }
   
   generar(){
-    window.open(URL_BACKEND+"api/tinguiclick/pedidos/export"); 
+    
+     
   }
 
   cerrarModal(){
@@ -52,3 +56,5 @@ export class FacturaComponent implements OnInit {
   }
 
 }
+
+

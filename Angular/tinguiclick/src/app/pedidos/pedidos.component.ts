@@ -12,7 +12,7 @@ import { AliadosService } from '../aliados/model/aliados.service';
 import { Domiciliarios } from '../domiciliarios/model/domiciliarios';
 import { DomiciliariosService } from '../domiciliarios/model/domiciliarios.service';
 import { ModalFacturaService } from './factura/modalfactura.service';
-import { ExcelService } from './util/excelservice';
+
 
 @Component({
   selector: 'app-pedidos',
