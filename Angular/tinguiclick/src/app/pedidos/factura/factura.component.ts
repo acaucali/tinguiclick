@@ -13,6 +13,7 @@ import swal from 'sweetalert2';
 import { URL_BACKEND } from 'src/app/configuracion/parametros/config';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/configuracion/parametros/auth.service';
+import { ExcelserviceService } from '../util/excelservice.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ import { AuthService } from 'src/app/configuracion/parametros/auth.service';
 export class FacturaComponent implements OnInit {
 
   private errores: string[];
-
+  private data: string[];
   public tarifas: Tarifa[];
   public aliados: Aliados[];
   public domiciliarios: Domiciliarios[];
@@ -36,7 +37,7 @@ export class FacturaComponent implements OnInit {
     private activatedRoute: ActivatedRoute, private pedidoComponent: PedidosComponent,
     public modalservice: ModalFacturaService, private domiciliariosService: DomiciliariosService, 
     private aliadosService: AliadosService, private tarifasService: TarifaService,
-    private http: HttpClient, private authService: AuthService
+    private http: HttpClient, private authService: AuthService, private excelService: ExcelserviceService,
    ) { }
 
   ngOnInit() {
@@ -46,9 +47,9 @@ export class FacturaComponent implements OnInit {
 
   }
   
-  generar(){
-    
-     
+  generar(): void{
+    this.pedidoService.generarExcel().subscribe(response => this.data = response);
+    this.excelService.exportASExcelFile(this.data, "factura");     
   }
 
   cerrarModal(){

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../configuracion/parametros/auth.service';
 import { ModalPedidosService } from './detalle-pedido/modalpedidos.service';
@@ -30,15 +30,11 @@ export class PedidosComponent implements OnInit {
   public aliados: Aliados[];
   public domiciliarios: Domiciliarios[];
 
-  public fechaInicio: Date;
-  public fechaFinal: Date;
-  public aliado: number;
-  public domi: number;
+  
 
   elements: any = [];
   previous: any = [];
-
-
+  
   firstItemIndex;
   lastItemIndex;
 
@@ -147,6 +143,10 @@ export class PedidosComponent implements OnInit {
 
   generarFactura(){
     this.modalFactura.abrirModal();
+  }
+
+  filtrar(){
+
   }
 
   detalle(pedido: Pedido){

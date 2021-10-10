@@ -21,6 +21,8 @@ export class PedidosService {
 
     private urlEndPoint:string =URL_BACKEND+'api/tinguiclick/pedidos';
     private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+
+    public pedidosFactura: string[];  
     public pedidos: Pedido[];
   
     constructor(private http: HttpClient, private router: Router, private authService: AuthService,
@@ -124,8 +126,13 @@ export class PedidosService {
       );
     }
 
-    generarExcel() {
-       
+    generarExcel(){
+      return this.http.get(`${this.urlEndPoint}/factura/excel/prueba`).pipe(
+        map(res =>{
+        this.pedidosFactura = res as string[];
+        return this.pedidosFactura;
+        })
+      );
     }
       
   }

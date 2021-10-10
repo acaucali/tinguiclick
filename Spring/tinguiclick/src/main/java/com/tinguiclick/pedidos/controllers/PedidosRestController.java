@@ -142,6 +142,54 @@ public class PedidosRestController {
 		return respuesta;				
 	}		
 	
+	@GetMapping(path="/pedidos/factura/excel/prueba", produces= "application/json")
+	public List<String[]> pedidosFacturaPrueba(){		
+		
+		List<String[]> respuesta = new ArrayList<>();
+		List<Pedido> pedidos = 	pedidosService.findAll();
+				
+		String[] headerList = new String[5];
+		headerList[0]="Aliado";
+		headerList[1]="Domiciliario";
+		headerList[2]="Direccion";
+		headerList[3]="Observacion";
+		headerList[4]="Detalle";
+		
+		respuesta.add(headerList);
+		
+		for(Pedido ped: pedidos) {
+			
+			String[] objList = new String[5];
+			
+			if(ped.getAliado() != null) {
+				Aliados ali = aliadosService.findById(ped.getAliado());
+				objList[0]=ali.getRazonSocial();
+			}else {
+				objList[0]="";
+			}
+			
+			if(ped.getDomiciliario() != null) {
+				Domiciliarios dom = domiciliariosService.findById(ped.getDomiciliario());
+				objList[1]=dom.getNombres();
+			}else {
+				objList[1]="";
+			}
+						
+			objList[2]=ped.getDireccionCliente();
+			objList[3]=ped.getDetalle();
+			if(ped.getTarifa() != null) {
+				Tarifa tar= tarifasService.findById(ped.getTarifa());
+				objList[4]=tar.getValor();
+			}else {
+				objList[4]="";
+			}
+			
+			respuesta.add(objList);
+		}
+		
+		return respuesta;				
+	}		
+	
 	//servicio que muestra un tipo de identificacion
 	@GetMapping("/pedidos/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {

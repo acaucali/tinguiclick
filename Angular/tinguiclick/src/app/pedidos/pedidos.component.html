@@ -19,12 +19,12 @@
         <div class="form-group col-md-5">
           
           <input [matDatepicker]="fechaInicial" class="form-control"  
-          style="display:inline; width:250px;" placeholder="Fecha Inicial">
+          style="display:inline; width:250px;" placeholder="Fecha Inicial" #fechainicial>
           <mat-datepicker-toggle [for]="fechaInicial"></mat-datepicker-toggle>
           <mat-datepicker #fechaInicial></mat-datepicker>
           
           <input [matDatepicker]="fechaFinal" class="form-control"  
-          style="display:inline; width:250px;" placeholder="Fecha Final">
+          style="display:inline; width:250px;" placeholder="Fecha Final" #fechafinal>
           <mat-datepicker-toggle [for]="fechaFinal"></mat-datepicker-toggle>
           <mat-datepicker #fechaFinal></mat-datepicker>
 
@@ -32,7 +32,7 @@
         
         <div class="form-group col-md-2">     
            
-          <select  class="form-control">
+          <select  class="form-control" #aliado>
             <option [ngValue]="undefined" selected>
               Aliado
             </option>
@@ -41,7 +41,7 @@
           </select>
         </div>  
         <div class="form-group col-md-2">
-          <select  class="form-control">
+          <select  class="form-control" #domiciliario>
             <option [ngValue]="undefined" selected>
                 Domiciliario
             </option>
