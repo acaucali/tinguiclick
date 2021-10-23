@@ -51,7 +51,7 @@
         </div>  
         <div class="form-group col-md-3">
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-primary text-white" (click)="generarFacturas()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
+          <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-primary text-white" (click)="filtrar()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
             Buscar</button>
         </div>  
       </div>
