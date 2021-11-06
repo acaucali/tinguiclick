@@ -126,6 +126,16 @@ export class PedidosService {
       );
     }
 
+    filtrarPedido(pedido: String, aliado: String){
+      
+      return this.http.get(`${this.urlEndPoint}/factura/excel/${pedido},${aliado}`).pipe(
+        map(res =>{
+        this.pedidos = res as Pedido[];
+        return this.pedidos;
+        })
+      );
+    }
+
     generarExcel(){
       return this.http.get(`${this.urlEndPoint}/factura/excel/prueba`).pipe(
         map(res =>{

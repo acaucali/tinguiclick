@@ -3,6 +3,8 @@ package com.tinguiclick.pedidos.controllers;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -103,43 +105,16 @@ public class PedidosRestController {
 	}
 	
 	@GetMapping(path="/pedidos/factura/excel/{desde, hasta}", produces= "application/json")
-	public List<String[]> pedidosFactura(@PathVariable Date desde, @PathVariable Date hasta){		
-		
-		List<String[]> respuesta = new ArrayList<>();
-		List<Pedido> pedidos = 	pedidosService.findByFechas(desde, hasta);
+	public List<Pedido> pedidosFactura(@PathVariable String desde, @PathVariable String hasta) throws ParseException{		
+
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 				
-		
-		for(Pedido ped: pedidos) {
-			
-			String[] objList = new String[5];
-			
-			if(ped.getAliado() != null) {
-				Aliados ali = aliadosService.findById(ped.getAliado());
-				objList[0]=ali.getRazonSocial();
-			}else {
-				objList[0]="";
-			}
-			
-			if(ped.getDomiciliario() != null) {
-				Domiciliarios dom = domiciliariosService.findById(ped.getDomiciliario());
-				objList[1]=dom.getNombres();
-			}else {
-				objList[1]="";
-			}
-						
-			objList[2]=ped.getDireccionCliente();
-			objList[3]=ped.getDetalle();
-			if(ped.getTarifa() != null) {
-				Tarifa tar= tarifasService.findById(ped.getTarifa());
-				objList[4]=tar.getValor();
-			}else {
-				objList[4]="";
-			}
-			
-			respuesta.add(objList);
-		}
-		
-		return respuesta;				
+		Date fechaIni = formato.parse(desde);
+		Date fechaFin = formato.parse(hasta);
+				
+		List<Pedido> pedidos = 	pedidosService.findByFechas(fechaIni, fechaFin);
+				
+		return pedidos;				
 	}		
 	
 	@GetMapping(path="/pedidos/factura/excel/prueba", produces= "application/json")

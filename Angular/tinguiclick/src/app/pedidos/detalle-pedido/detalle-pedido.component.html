@@ -190,15 +190,20 @@
                                                     Nombre es requerido
                                                 </div>
                                             </div>
+                                            <br>
+                                            <label for="celular" style="font-size: medium">Celular Cliente</label>
+                                            <input type="number" class="form-control" placeholder="Celular Cliente"
+                                                [(ngModel)]="pedido.numeroCelular" name="numeroCelular" required max="20"
+                                                #celular="ngModel">
+                                            <div class="alert alert-danger"
+                                                *ngIf="celular.invalid && (celular.dirty || celular.touched)">
+                                                <div *ngIf="celular.errors.required">
+                                                    Celular es requerido
+                                                </div>
+                                            </div>
+
                                         </div>  
                                         
-                                        <div class="form-group col-md-6">
-                                            <label for="apellido" style="font-size: medium">Apellido Cliente</label>
-                                            <input type="text" class="form-control" placeholder="Apellido Cliente"
-                                                [(ngModel)]="pedido.apellidoCliente" name="apellidoCliente" maxlength="250"
-                                                #apellido="ngModel">
-                                        </div> 
-
                                         <div class="form-group col-md-6">
                                             <label for="direccion" style="font-size: medium">Dirección Cliente</label>
 
@@ -214,24 +219,7 @@
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <label for="celular" style="font-size: medium">Celular Cliente</label>
-                                            <input type="number" class="form-control" placeholder="Celular Cliente"
-                                                [(ngModel)]="pedido.numeroCelular" name="numeroCelular" required max="20"
-                                                #celular="ngModel">
-                                            <div class="alert alert-danger"
-                                                *ngIf="celular.invalid && (celular.dirty || celular.touched)">
-                                                <div *ngIf="celular.errors.required">
-                                                    Celular es requerido
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="telefono" style="font-size: medium">Telefono Cliente</label>
-                                            <input type="number" class="form-control" placeholder="Telefono Cliente"
-                                                [(ngModel)]="pedido.telefono" name="telefono"  max="20"
-                                                #telefono="ngModel">
-                                        
+                                            
                                         </div>
 
                                     </div> 

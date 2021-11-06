@@ -19,42 +19,24 @@
         <div class="form-group col-md-5">
           
           <input [matDatepicker]="fechaInicial" class="form-control"  
-          style="display:inline; width:250px;" placeholder="Fecha Inicial" #fechainicial>
+          style="display:inline; width:250px;" placeholder="Fecha Inicial" #fechainicial id="fechaInicialPedido">
           <mat-datepicker-toggle [for]="fechaInicial"></mat-datepicker-toggle>
           <mat-datepicker #fechaInicial></mat-datepicker>
           
           <input [matDatepicker]="fechaFinal" class="form-control"  
-          style="display:inline; width:250px;" placeholder="Fecha Final" #fechafinal>
+          style="display:inline; width:250px;" placeholder="Fecha Final" #fechafinal id="fechaFinalPedido">
           <mat-datepicker-toggle [for]="fechaFinal"></mat-datepicker-toggle>
           <mat-datepicker #fechaFinal></mat-datepicker>
 
         </div>  
         
-        <div class="form-group col-md-2">     
-           
-          <select  class="form-control" #aliado>
-            <option [ngValue]="undefined" selected>
-              Aliado
-            </option>
-            <option *ngFor="let ali of aliados" [ngValue]="ali.aliadoId">
-              {{ali.razonSocial}}</option>
-          </select>
-        </div>  
-        <div class="form-group col-md-2">
-          <select  class="form-control" #domiciliario>
-            <option [ngValue]="undefined" selected>
-                Domiciliario
-            </option>
-            <option *ngFor="let dom of domiciliarios" [ngValue]="dom.domiciliarioId">
-                {{dom.nombres}}</option>
-          </select>
-        </div>  
+        
         <div class="form-group col-md-3">
           &nbsp;&nbsp;&nbsp;&nbsp;
           <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-primary text-white" (click)="filtrar()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
             Buscar</button>
         </div>  
-      </div>
+      </div> 
   
       <div *ngIf="pedidos?.length==0" class="alert alert-info">
         No hay registros en la base de datos!

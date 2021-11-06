@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../configuracion/parametros/auth.service';
 import { ModalPedidosService } from './detalle-pedido/modalpedidos.service';
@@ -30,7 +30,6 @@ export class PedidosComponent implements OnInit {
   public aliados: Aliados[];
   public domiciliarios: Domiciliarios[];
 
-  
 
   elements: any = [];
   previous: any = [];
@@ -146,7 +145,24 @@ export class PedidosComponent implements OnInit {
   }
 
   filtrar(){
-
+    this.pedidos = null;
+    this.elements = [];
+    this.previous = [];
+    this.pedidosService.filtrarPedido((<HTMLInputElement>document.getElementById("fechaInicialPedido")).value, 
+    (<HTMLInputElement>document.getElementById("fechaFinalPedido")).value).subscribe(response =>{
+      this.pedidos = response;
+      if(this.pedidos.length >0){
+        this.pedidos.forEach(ped =>{
+          this.elements.push({
+            pedidoId: ped.pedidoId, nombreCliente: ped.nombreCliente, apellidoCliente: ped.apellidoCliente, direccionCliente: ped.direccionCliente,
+            numeroCelular: ped.numeroCelular, telefono: ped.telefono, municipio: ped.municipio, ciudad: ped.ciudad, metodoPago: ped.metodoPago,
+            detalle: ped.detalle, observacion: ped.observacion, valor: ped.valor, alerta: ped.alerta, estado: ped.estado, tipo: ped.tipo,
+            tarifa: ped.tarifa, aliado: ped.aliado, domiciliario: ped.domiciliario, fechaRegistro: ped.fechaRegistro, fechaModificacion: ped.fechaModificacion
+            
+            });
+        });
+      }
+    })
   }
 
   detalle(pedido: Pedido){
