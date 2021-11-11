@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { Observable, of , throwError} from 'rxjs';
-import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEvent, HttpParams } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -11,6 +11,7 @@ import swal from 'sweetalert2';
 import { URL_BACKEND } from 'src/app/configuracion/parametros/config';
 import { AuthService } from 'src/app/configuracion/parametros/auth.service';
 import { Pedido } from './pedido';
+import { FiltroPedido } from '../util/FiltroPedido';
 
 
 
@@ -24,6 +25,8 @@ export class PedidosService {
 
     public pedidosFactura: string[];  
     public pedidos: Pedido[];
+
+    
   
     constructor(private http: HttpClient, private router: Router, private authService: AuthService,
       ) { }
@@ -126,9 +129,8 @@ export class PedidosService {
       );
     }
 
-    filtrarPedido(pedido: String, aliado: String){
-      
-      return this.http.get(`${this.urlEndPoint}/factura/excel/${pedido},${aliado}`).pipe(
+    filtrarPedido(fechaIni: string, fechaFin: string){
+      return this.http.get(`${this.urlEndPoint}/factura/excel/${fechaIni},${fechaFin} `).pipe(
         map(res =>{
         this.pedidos = res as Pedido[];
         return this.pedidos;

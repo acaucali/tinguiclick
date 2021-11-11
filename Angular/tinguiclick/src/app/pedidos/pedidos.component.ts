@@ -12,6 +12,12 @@ import { AliadosService } from '../aliados/model/aliados.service';
 import { Domiciliarios } from '../domiciliarios/model/domiciliarios';
 import { DomiciliariosService } from '../domiciliarios/model/domiciliarios.service';
 import { ModalFacturaService } from './factura/modalfactura.service';
+import { FiltroPedido } from './util/FiltroPedido';
+import { moment } from 'ngx-bootstrap/chronos/test/chain';
+import { parseDate } from 'ngx-bootstrap';
+import { formatDate } from '@angular/common';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 
 @Component({
@@ -29,7 +35,12 @@ export class PedidosComponent implements OnInit {
 
   public aliados: Aliados[];
   public domiciliarios: Domiciliarios[];
+  public filtro: FiltroPedido = new FiltroPedido();
 
+  fecha: Date;
+  fechaFin: Date;
+  fechaInicial: string;
+  fechaFinal: string;
 
   elements: any = [];
   previous: any = [];
@@ -145,11 +156,23 @@ export class PedidosComponent implements OnInit {
   }
 
   filtrar(){
+
+    let fechaI = (<HTMLInputElement>document.getElementById("fechaInicialPedido")).value;
+    let fechaf = (<HTMLInputElement>document.getElementById("fechaFinalPedido")).value;
+
+    this.fecha = new Date(fechaI);
+    this.fechaFin = new Date(fechaf);
+
+    let mesIni = this.fecha.getMonth() + parseInt('1');
+    let mesFin = this.fechaFin.getMonth() + parseInt('1');
+    let stringFecha = this.fecha.getDate()+'-'+mesIni+'-'+this.fecha.getFullYear();
+    let stringFechaF = this.fechaFin.getDate()+'-'+mesFin+'-'+this.fechaFin.getFullYear();
+     
     this.pedidos = null;
     this.elements = [];
     this.previous = [];
-    this.pedidosService.filtrarPedido((<HTMLInputElement>document.getElementById("fechaInicialPedido")).value, 
-    (<HTMLInputElement>document.getElementById("fechaFinalPedido")).value).subscribe(response =>{
+    this.pedidosService.filtrarPedido(stringFecha, stringFechaF
+    ).subscribe(response =>{
       this.pedidos = response;
       if(this.pedidos.length >0){
         this.pedidos.forEach(ped =>{
@@ -163,6 +186,7 @@ export class PedidosComponent implements OnInit {
         });
       }
     })
+
   }
 
   detalle(pedido: Pedido){
@@ -194,6 +218,11 @@ export class PedidosComponent implements OnInit {
       }
       
     });
+  }
+
+  limpiarFiltro(){
+    this.filtro.fechaInicial = "";
+    this.filtro.fechaFinal = "";
   }
 
 }

@@ -32,24 +32,6 @@
                                   
                                           </div>  
                                           
-                                          <div class="form-group col-md-6">     
-                                             
-                                            <select  class="form-control">
-                                              <option [ngValue]="undefined" selected>
-                                                Aliado
-                                              </option>
-                                              <option *ngFor="let ali of aliados" [ngValue]="ali.aliadoId">
-                                                {{ali.razonSocial}}</option>
-                                            </select>
-                                            <br>
-                                            <select  class="form-control">
-                                              <option [ngValue]="undefined" selected>
-                                                  Domiciliario
-                                              </option>
-                                              <option *ngFor="let dom of domiciliarios" [ngValue]="dom.domiciliarioId">
-                                                  {{dom.nombres}}</option>
-                                            </select>
-                                          </div>  
                                           <div class="form-group col-md-3">
                                             
                                             <button class="btn btn-rounded bg-primary text-white" (click)="generar()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">

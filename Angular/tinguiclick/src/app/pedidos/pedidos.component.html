@@ -7,9 +7,9 @@
     <div class="card-body text-black">
       
       <div class="my-2 text-left">
-        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="crearPedidos()" type="button" placement="bottom" ngbTooltip="Crear Pedido">
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="crearPedidos()" type="button" placement="bottom" mdbTooltip="Registrar Pedido">
           <i class="far fa-plus-square fa-lg"></i></button>
-        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="generarFactura()" type="button" placement="bottom" ngbTooltip="Reporte Facturación">
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded bg-white" (click)="generarFactura()" type="button" placement="bottom" mdbTooltip="Generar Facturas" >
           <i class="fa fa-calendar fa-lg"></i></button>
        
       </div>
@@ -20,12 +20,12 @@
           
           <input [matDatepicker]="fechaInicial" class="form-control"  
           style="display:inline; width:250px;" placeholder="Fecha Inicial" #fechainicial id="fechaInicialPedido">
-          <mat-datepicker-toggle [for]="fechaInicial"></mat-datepicker-toggle>
-          <mat-datepicker #fechaInicial></mat-datepicker>
+          <mat-datepicker-toggle [for]="fechaInicial" placement="bottom" mdbTooltip="Seleccionar Fecha Inicial"></mat-datepicker-toggle>
+          <mat-datepicker #fechaInicial ></mat-datepicker>
           
           <input [matDatepicker]="fechaFinal" class="form-control"  
           style="display:inline; width:250px;" placeholder="Fecha Final" #fechafinal id="fechaFinalPedido">
-          <mat-datepicker-toggle [for]="fechaFinal"></mat-datepicker-toggle>
+          <mat-datepicker-toggle [for]="fechaFinal" placement="bottom" mdbTooltip="Seleccionar Fecha Final"></mat-datepicker-toggle>
           <mat-datepicker #fechaFinal></mat-datepicker>
 
         </div>  

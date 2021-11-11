@@ -49,6 +49,8 @@ import com.tinguiclick.pedidos.service.IPedidosService;
 import com.tinguiclick.service.IAliadosService;
 import com.tinguiclick.service.IDomiciliariosService;
 import com.tinguiclick.service.ITarifaService;
+import com.tinguiclick.utilities.model.FiltroFactura;
+
 import org.springframework.http.MediaType;
 
 
@@ -99,15 +101,15 @@ public class PedidosRestController {
 		return pedidosService.findByFechas(desde, hasta);
 	}
 	
-	@GetMapping("/pedidos/factura/filtro/{desde, hasta}")
+	@GetMapping("/pedidos/factura/filtro/{desde},{hasta}")
 	public List<Factura> facturasFiltro(@PathVariable Date desde, @PathVariable Date hasta){		
 		return facturaService.findByFechas(desde, hasta);
 	}
 	
-	@GetMapping(path="/pedidos/factura/excel/{desde, hasta}", produces= "application/json")
+	@GetMapping(path="/pedidos/factura/excel/{desde},{hasta}", produces= "application/json")
 	public List<Pedido> pedidosFactura(@PathVariable String desde, @PathVariable String hasta) throws ParseException{		
 
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 				
 		Date fechaIni = formato.parse(desde);
 		Date fechaFin = formato.parse(hasta);

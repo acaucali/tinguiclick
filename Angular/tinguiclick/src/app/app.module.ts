@@ -83,7 +83,7 @@ import { ExcelserviceService } from './pedidos/util/excelservice.service';
     })
   ],
   providers: [UsuariosService, TipoIdentificacionService, DomiciliariosService, AliadosService, TarifaService,
-    PedidosService, ExcelserviceService,
+    PedidosService, ExcelserviceService, 
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],
