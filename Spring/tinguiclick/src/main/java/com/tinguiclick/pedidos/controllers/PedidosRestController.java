@@ -119,11 +119,16 @@ public class PedidosRestController {
 		return pedidos;				
 	}		
 	
-	@GetMapping(path="/pedidos/factura/excel/prueba", produces= "application/json")
-	public List<String[]> pedidosFacturaPrueba(){		
+	@GetMapping(path="/pedidos/factura/excel/prueba/{desde},{hasta}", produces= "application/json")
+	public List<String[]> pedidosFacturaPrueba(@PathVariable String desde, @PathVariable String hasta) throws ParseException{		
 		
 		List<String[]> respuesta = new ArrayList<>();
-		List<Pedido> pedidos = 	pedidosService.findAll();
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		
+		Date fechaIni = formato.parse(desde);
+		Date fechaFin = formato.parse(hasta);
+				
+		List<Pedido> pedidos = 	pedidosService.findByFechas(fechaIni, fechaFin);
 				
 		String[] headerList = new String[5];
 		headerList[0]="Aliado";

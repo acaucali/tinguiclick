@@ -20,13 +20,13 @@
                                         <div class="form-group col-md-6">
           
                                             <input [matDatepicker]="fechaInicial" class="form-control"  
-                                            style="display:inline; width:250px;" placeholder="Fecha Inicial">
+                                            style="display:inline; width:250px;" placeholder="Fecha Inicial" #fechainicial id="fechaInicialFactura">
                                             <mat-datepicker-toggle [for]="fechaInicial"></mat-datepicker-toggle>
                                             <mat-datepicker #fechaInicial></mat-datepicker>
                                             <br>
                                             <br>
                                             <input [matDatepicker]="fechaFinal" class="form-control"  
-                                            style="display:inline; width:250px;" placeholder="Fecha Final">
+                                            style="display:inline; width:250px;" placeholder="Fecha Final" #fechafinal id="fechaFinalFactura">
                                             <mat-datepicker-toggle [for]="fechaFinal"></mat-datepicker-toggle>
                                             <mat-datepicker #fechaFinal></mat-datepicker>
                                   

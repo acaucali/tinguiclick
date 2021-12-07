@@ -138,8 +138,8 @@ export class PedidosService {
       );
     }
 
-    generarExcel(){
-      return this.http.get(`${this.urlEndPoint}/factura/excel/prueba`).pipe(
+    generarExcel(fechaIni: string, fechaFin: string){
+      return this.http.get(`${this.urlEndPoint}/factura/excel/prueba/${fechaIni},${fechaFin}`).pipe(
         map(res =>{
         this.pedidosFactura = res as string[];
         return this.pedidosFactura;

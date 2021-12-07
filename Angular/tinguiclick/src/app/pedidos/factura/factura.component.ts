@@ -29,8 +29,12 @@ export class FacturaComponent implements OnInit {
   public aliados: Aliados[];
   public domiciliarios: Domiciliarios[];
 
-  public fechaInicial: Date;
-  public fechafinal: Date;
+
+
+  fecha: Date;
+  fechaFin: Date;
+  fechaInicial: string;
+  fechaFinal: string;
 
   titulo: string = "Generar factura";
   constructor(private pedidoService: PedidosService, private router: Router, 
@@ -48,8 +52,24 @@ export class FacturaComponent implements OnInit {
   }
   
   generar(): void{
-    this.pedidoService.generarExcel().subscribe(response => this.data = response);
-    this.excelService.exportASExcelFile(this.data, "factura");     
+
+    let fechaI = (<HTMLInputElement>document.getElementById("fechaInicialFactura")).value;
+    let fechaf = (<HTMLInputElement>document.getElementById("fechaFinalFactura")).value;
+
+    this.fecha = new Date(fechaI);
+    this.fechaFin = new Date(fechaf);
+
+    let mesIni = this.fecha.getMonth() + parseInt('1');
+    let mesFin = this.fechaFin.getMonth() + parseInt('1');
+    let stringFecha = this.fecha.getDate()+'-'+mesIni+'-'+this.fecha.getFullYear();
+    let stringFechaF = this.fechaFin.getDate()+'-'+mesFin+'-'+this.fechaFin.getFullYear();
+    console.log(stringFecha);
+    console.log(stringFechaF);
+    this.pedidoService.generarExcel(stringFecha, stringFechaF).subscribe(response => {
+      this.data = response
+      this.excelService.exportASExcelFile(this.data, "factura");
+    });
+         
   }
 
   cerrarModal(){
