@@ -1,7 +1,7 @@
-<div class="sidebar-container" style="background-color: #E4CF50;">
+<div class="sidebar-container" style="background-color: #fff239;">
     <br>
     <ul class="sidebar-navigation">
-      <li class="header" style="background-color: #E4CF50;">Opciones</li>
+      <li class="header" style="background-color: #fff239;">Opciones</li>
       <li>
         <a routerLink="/inicio">
           <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i> Inicio
@@ -22,7 +22,7 @@
           <i class="fa fa-motorcycle" aria-hidden="true" style="font-size: 15px;"></i> Domiciliarios
         </a>
       </li>
-      <li class="header" style="background-color: #E4CF50;" *ngIf="authService.hasRole('ROLE_ADMIN')">Configuracion</li>
+      <li class="header" style="background-color: #fff239;" *ngIf="authService.hasRole('ROLE_ADMIN')">Configuracion</li>
       <li *ngIf="authService.hasRole('ROLE_ADMIN')">
         <a routerLink="/usuarios" style="font-size: 15px;">
           <i class="fa fa-users" aria-hidden="true"></i> Usuarios
@@ -35,7 +35,7 @@
             Parametros
           </a>
         
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color: #E4CF50;" >
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color: #fff239;" >
             <a routerLink="/tarifa" style="font-size: 15px;">
               <i class="fa fa-credit-card" aria-hidden="true"></i> Tarifas
             </a>
