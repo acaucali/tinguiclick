@@ -3,7 +3,7 @@
   <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList/>&#xD;&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_vNHuQfG1Eem574PKBRRzEw" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_vh2BEvG1Eem574PKBRRzEw" label="%trimmedwindow.label.eclipseSDK" x="495" y="178" width="1024" height="768">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_vNHuQfG1Eem574PKBRRzEw" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_vh2BEvG1Eem574PKBRRzEw" label="%trimmedwindow.label.eclipseSDK" x="2094" y="0" width="1024" height="768">
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="isRestored" value="true"/>
@@ -100,8 +100,8 @@
                 <tags>categoryTag:Java Browsing</tags>
               </children>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_vvJdR_G1Eem574PKBRRzEw" containerData="7500">
-              <children xsi:type="basic:PartSashContainer" xmi:id="_vvJdSPG1Eem574PKBRRzEw" containerData="7000" horizontal="true">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_vvJdR_G1Eem574PKBRRzEw" containerData="7500" selectedElement="_vvJdSPG1Eem574PKBRRzEw">
+              <children xsi:type="basic:PartSashContainer" xmi:id="_vvJdSPG1Eem574PKBRRzEw" containerData="7000" selectedElement="_vvJdSvG1Eem574PKBRRzEw" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_vvJdSfG1Eem574PKBRRzEw" elementId="org.eclipse.ui.editorss" containerData="7000" ref="_vpoEEPG1Eem574PKBRRzEw"/>
                 <children xsi:type="basic:PartStack" xmi:id="_vvJdSvG1Eem574PKBRRzEw" elementId="topRight" containerData="3000" selectedElement="_vvJdS_G1Eem574PKBRRzEw">
                   <children xsi:type="advanced:Placeholder" xmi:id="_vvJdS_G1Eem574PKBRRzEw" elementId="org.eclipse.ui.views.ContentOutline" ref="_vvFy4PG1Eem574PKBRRzEw" closeable="true">
@@ -351,7 +351,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_vlAp0PG1Eem574PKBRRzEw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_EhXrICukEeywodBFRptRww" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_vNuyTfG1Eem574PKBRRzEw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_PSlP8GOUEeyfgY4zo6IKEg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_vNuyTfG1Eem574PKBRRzEw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_vlAp0fG1Eem574PKBRRzEw" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -391,7 +391,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_vlBQ5PG1Eem574PKBRRzEw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_EhbVgCukEeywodBFRptRww" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_vNuLNPG1Eem574PKBRRzEw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_PSo6UGOUEeyfgY4zo6IKEg" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_vNuLNPG1Eem574PKBRRzEw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_vlBQ5fG1Eem574PKBRRzEw" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
