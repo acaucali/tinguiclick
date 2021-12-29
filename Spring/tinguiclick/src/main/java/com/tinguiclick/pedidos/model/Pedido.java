@@ -42,9 +42,7 @@ public class Pedido implements Serializable{
 	@Column(nullable=true)
 	private Byte municipio;
 	
-	@Column(nullable=true)
-	private Byte ciudad;
-	
+
 	@Column(nullable=true)
 	private Byte metodoPago;
 	
@@ -192,14 +190,6 @@ public class Pedido implements Serializable{
 
 	public void setMunicipio(Byte municipio) {
 		this.municipio = municipio;
-	}
-
-	public Byte getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(Byte ciudad) {
-		this.ciudad = ciudad;
 	}
 
 	public Date getFechaRegistro() {

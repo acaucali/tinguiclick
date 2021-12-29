@@ -66,15 +66,8 @@ public class Aliados implements Serializable{
 	@Size(max=500)
 	@Column(nullable=true)
 	private String categoriaPrincipal;
-	
-	@Size(max=500)
-	@Column(nullable=true)
-	private String categoriaSecundaria;	
-			
-	@Size(max=500)
-	@Column(nullable=true)
-	private String categoriaTerciaria;
-	
+
+
 	@Column(nullable=true)
 	private Long documentoId;
 	
@@ -172,23 +165,7 @@ public class Aliados implements Serializable{
 		this.categoriaPrincipal = categoriaPrincipal;
 	}
 
-	public String getCategoriaSecundaria() {
-		return categoriaSecundaria;
-	}
-
-	public void setCategoriaSecundaria(String categoriaSecundaria) {
-		this.categoriaSecundaria = categoriaSecundaria;
-	}
-
-	public String getCategoriaTerciaria() {
-		return categoriaTerciaria;
-	}
-
-	public void setCategoriaTerciaria(String categoriaTerciaria) {
-		this.categoriaTerciaria = categoriaTerciaria;
-	}
-
-	public Long getDocumentoId() {
+ 	public Long getDocumentoId() {
 		return documentoId;
 	}
 

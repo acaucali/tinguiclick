@@ -13,8 +13,6 @@ export class Aliados{
     direccionFactura: string;
     emailFactura: string;
     categoriaPrincipal: string;
-    categoriaSecundaria: string;
-    categoriaTerciaria: string;
     documentoId: number;
     tipoCuentaBancaria: number;
     nombreBanco: string;

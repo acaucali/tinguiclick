@@ -129,8 +129,6 @@ public class AliadosRestController {
 		try{
 			
 			aliadoActual.setCategoriaPrincipal(aliado.getCategoriaPrincipal());
-			aliadoActual.setCategoriaSecundaria(aliado.getCategoriaSecundaria());
-			aliadoActual.setCategoriaTerciaria(aliado.getCategoriaTerciaria());
 			aliadoActual.setCuentaBancaria(aliado.getCuentaBancaria());
 			aliadoActual.setCuentaDaviplata(aliado.getCuentaDaviplata());
 			aliadoActual.setCuentaNequi(aliado.getCuentaNequi());

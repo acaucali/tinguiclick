@@ -256,7 +256,6 @@ public class PedidosRestController {
 				
 			pedidoActual.setAlerta(pedido.getAlerta());
 			pedidoActual.setAliado(pedido.getAliado());
-			pedidoActual.setCiudad(pedido.getCiudad());
 			pedidoActual.setDetalle(pedido.getDetalle());
 			pedidoActual.setDireccionCliente(pedido.getDireccionCliente());
 			pedidoActual.setDomiciliario(pedido.getDomiciliario());

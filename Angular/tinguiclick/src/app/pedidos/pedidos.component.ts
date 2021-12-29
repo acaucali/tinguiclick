@@ -177,9 +177,9 @@ export class PedidosComponent implements OnInit {
       if(this.pedidos.length >0){
         this.pedidos.forEach(ped =>{
           this.elements.push({
-            pedidoId: ped.pedidoId, nombreCliente: ped.nombreCliente, apellidoCliente: ped.apellidoCliente, direccionCliente: ped.direccionCliente,
-            numeroCelular: ped.numeroCelular, telefono: ped.telefono, municipio: ped.municipio, ciudad: ped.ciudad, metodoPago: ped.metodoPago,
-            detalle: ped.detalle, observacion: ped.observacion, valor: ped.valor, alerta: ped.alerta, estado: ped.estado, tipo: ped.tipo,
+            pedidoId: ped.pedidoId, nombreCliente: ped.nombreCliente,  direccionCliente: ped.direccionCliente,
+            numeroCelular: ped.numeroCelular, municipio: ped.municipio, metodoPago: ped.metodoPago,
+            detalle: ped.detalle, valor: ped.valor, alerta: ped.alerta, estado: ped.estado, tipo: ped.tipo,
             tarifa: ped.tarifa, aliado: ped.aliado, domiciliario: ped.domiciliario, fechaRegistro: ped.fechaRegistro, fechaModificacion: ped.fechaModificacion
             
             });
@@ -208,9 +208,9 @@ export class PedidosComponent implements OnInit {
       if(this.pedidos.length >0){
         this.pedidos.forEach(ped =>{
           this.elements.push({
-            pedidoId: ped.pedidoId, nombreCliente: ped.nombreCliente, apellidoCliente: ped.apellidoCliente, direccionCliente: ped.direccionCliente,
-            numeroCelular: ped.numeroCelular, telefono: ped.telefono, municipio: ped.municipio, ciudad: ped.ciudad, metodoPago: ped.metodoPago,
-            detalle: ped.detalle, observacion: ped.observacion, valor: ped.valor, alerta: ped.alerta, estado: ped.estado, tipo: ped.tipo,
+            pedidoId: ped.pedidoId, nombreCliente: ped.nombreCliente, direccionCliente: ped.direccionCliente,
+            numeroCelular: ped.numeroCelular, municipio: ped.municipio, metodoPago: ped.metodoPago,
+            detalle: ped.detalle, valor: ped.valor, alerta: ped.alerta, estado: ped.estado, tipo: ped.tipo,
             tarifa: ped.tarifa, aliado: ped.aliado, domiciliario: ped.domiciliario, fechaRegistro: ped.fechaRegistro, fechaModificacion: ped.fechaModificacion
             
             });
