@@ -256,7 +256,6 @@ public class PedidosRestController {
 				
 			pedidoActual.setAlerta(pedido.getAlerta());
 			pedidoActual.setAliado(pedido.getAliado());
-			pedidoActual.setApellidoCliente(pedido.getApellidoCliente());
 			pedidoActual.setCiudad(pedido.getCiudad());
 			pedidoActual.setDetalle(pedido.getDetalle());
 			pedidoActual.setDireccionCliente(pedido.getDireccionCliente());
@@ -266,9 +265,7 @@ public class PedidosRestController {
 			pedidoActual.setMunicipio(pedido.getMunicipio());
 			pedidoActual.setNombreCliente(pedido.getNombreCliente());
 			pedidoActual.setNumeroCelular(pedido.getNumeroCelular());
-			pedidoActual.setObservacion(pedido.getObservacion());
 			pedidoActual.setTarifa(pedido.getTarifa());
-			pedidoActual.setTelefono(pedido.getTelefono());
 			pedidoActual.setTipo(pedido.getTipo());
 			pedidoActual.setValor(pedido.getValor());
 			pedidoActual.setFechaModificacion(new Date());
@@ -355,7 +352,7 @@ public class PedidosRestController {
 				factura.setAliadoId(pedidoActual.getAliado());
 				factura.setDomiciliarioId(pedidoActual.getDomiciliario());
 				factura.setFechaRegistro(new Date());
-				factura.setObservacion(pedidoActual.getObservacion());
+				factura.setObservacion(pedidoActual.getDetalle());
 				factura.setTipo(pedidoActual.getTipo());
 				factura.setUbicacion(pedidoActual.getDireccionCliente());
 				factura.setValor(Double.parseDouble(pedidoActual.getValor()));

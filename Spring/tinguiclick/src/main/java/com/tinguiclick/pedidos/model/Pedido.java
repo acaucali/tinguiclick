@@ -30,9 +30,6 @@ public class Pedido implements Serializable{
 	@Column(nullable=true)
 	private String nombreCliente;
 	
-	@Size(max=500)
-	@Column(nullable=true)
-	private String apellidoCliente;
 	
 	@Size(max=500)
 	@Column(nullable=true)
@@ -41,9 +38,7 @@ public class Pedido implements Serializable{
 	@Column(nullable=true)
 	private Long numeroCelular;
 	
-	@Column(nullable=true)
-	private Long telefono;
-	
+		
 	@Column(nullable=true)
 	private Byte municipio;
 	
@@ -57,9 +52,6 @@ public class Pedido implements Serializable{
 	@Column(nullable=true)
 	private String detalle;
 	
-	@Size(max=500)
-	@Column(nullable=true)
-	private String observacion;
 	
 	@Size(max=200)
 	@Column(nullable=true)
@@ -106,14 +98,6 @@ public class Pedido implements Serializable{
 		this.nombreCliente = nombreCliente;
 	}
 
-	public String getApellidoCliente() {
-		return apellidoCliente;
-	}
-
-	public void setApellidoCliente(String apellidoCliente) {
-		this.apellidoCliente = apellidoCliente;
-	}
-
 	public String getDireccionCliente() {
 		return direccionCliente;
 	}
@@ -130,14 +114,6 @@ public class Pedido implements Serializable{
 		this.numeroCelular = numeroCelular;
 	}
 
-	public Long getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(Long telefono) {
-		this.telefono = telefono;
-	}
-
 	public Byte getMetodoPago() {
 		return metodoPago;
 	}
@@ -152,14 +128,6 @@ public class Pedido implements Serializable{
 
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
-	}
-
-	public String getObservacion() {
-		return observacion;
-	}
-
-	public void setObservacion(String observacion) {
-		this.observacion = observacion;
 	}
 
 	public String getValor() {

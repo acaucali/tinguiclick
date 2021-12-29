@@ -98,7 +98,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="usuario" style="font-size: medium">Correo Electrónico</label>
                                     <input type="email" class="form-control" placeholder="Correo Electronico"
-                                        [(ngModel)]="usuario.email" name="email" required maxlength="20"
+                                        [(ngModel)]="usuario.email" name="email" required maxlength="100"
                                         #correo="ngModel">
                                     <div class="alert alert-danger"
                                         *ngIf="correo.invalid && (correo.dirty || correo.touched)">
@@ -151,7 +151,7 @@
                                     <label for="usuario" style="font-size: medium">Habilitado</label>
                                     &nbsp;&nbsp;
                                     <input type="checkbox"  
-                                     [(ngModel)]="usuario.habilitado" name="habilitado" required #habilitado="ngModel">
+                                     [(ngModel)]="usuario.habilitado" name="habilitado" #habilitado="ngModel">
 
                                     <div class="alert alert-danger"
                                         *ngIf="habilitado.invalid && (habilitado.dirty || habilitado.touched)">
