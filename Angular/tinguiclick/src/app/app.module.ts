@@ -41,6 +41,9 @@ import { DetalleFacturaComponent } from './pedidos/detalle-factura/detalle-factu
 import { DetalleDataComponent } from './pedidos/detalle/detalle.component';
 import { FacturaComponent } from './pedidos/factura/factura.component';
 import { ExcelserviceService } from './pedidos/util/excelservice.service';
+import { RegistroComponent } from './registro/registro.component';
+import { DetalleRegistroComponent } from './registro/detalle-registro/detalle-registro.component';
+import { RegistroService } from './registro/model/registro.service';
 
 
 
@@ -64,6 +67,8 @@ import { ExcelserviceService } from './pedidos/util/excelservice.service';
     DetalleFacturaComponent,
     DetalleDataComponent,
     FacturaComponent,
+    RegistroComponent,
+    DetalleRegistroComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +88,7 @@ import { ExcelserviceService } from './pedidos/util/excelservice.service';
     })
   ],
   providers: [UsuariosService, TipoIdentificacionService, DomiciliariosService, AliadosService, TarifaService,
-    PedidosService, ExcelserviceService, 
+    PedidosService, ExcelserviceService, RegistroService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],
