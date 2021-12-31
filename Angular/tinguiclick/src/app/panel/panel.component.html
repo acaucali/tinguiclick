@@ -24,7 +24,17 @@
       </li>
       <li  *ngIf="authService.hasRole('ROLE_ADMIN')">
         <a routerLink="/domiciliarios">
-          <i class="fa fa-hourglass" aria-hidden="true" style="font-size: 15px;"></i> Registro Administrativo
+          <i class="fa fa-hourglass" aria-hidden="true" style="font-size: 15px;"></i> Registro
+        </a>
+      </li>
+      <li  *ngIf="authService.hasRole('ROLE_ADMIN')">
+        <a routerLink="/domiciliarios">
+          <i class="fa fa-archive" aria-hidden="true" style="font-size: 15px;"></i> Inventario
+        </a>
+      </li>
+      <li  *ngIf="authService.hasRole('ROLE_ADMIN')">
+        <a routerLink="/domiciliarios">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true" style="font-size: 15px;"></i> Devoluciones
         </a>
       </li>
       <li class="header" style="background-color: #fff239;" *ngIf="authService.hasRole('ROLE_ADMIN')">Configuracion</li>
