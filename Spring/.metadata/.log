@@ -5049,3 +5049,18 @@ Binding(CTRL+SHIFT+C,
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-01-18 11:41:41.476
 !MESSAGE executing callback sts4.classpath.FvzOhDhc SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-01-18 13:25:07.483
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.FvzOhDhc
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-01-18 13:25:07.484
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.FvzOhDhc
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-01-18 13:25:07.484
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-01-18 13:25:07.485
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.FvzOhDhc => OK
+
+!ENTRY org.eclipse.ui 2 2 2022-01-18 13:25:08.729
+!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
