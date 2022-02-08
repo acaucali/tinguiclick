@@ -4,6 +4,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { ModulosModule } from '../modulos/modulos.module';
 
 import { AppRoutingModule } from '../app-routing.module';
+import { Pagina404Component } from './pagina404/pagina404.component';
 
 
 
@@ -11,6 +12,7 @@ import { AppRoutingModule } from '../app-routing.module';
 @NgModule({
   declarations: [
     MainpageComponent,
+    Pagina404Component,
     
   ],
   imports: [

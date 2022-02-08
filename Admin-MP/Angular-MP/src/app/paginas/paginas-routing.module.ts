@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainpageComponent } from './mainpage/mainpage.component';
+import { Pagina404Component } from './pagina404/pagina404.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'ventas', loadChildren: () => import('./ventas/ventas.module').then(m =>m.VentasModule)},
     { path: 'mensajes', loadChildren: () => import('./mensajes/mensajes.module').then(m =>m.MensajesModule)},
     { path: 'disputas', loadChildren: () => import('./disputas/disputas.module').then(m =>m.DisputasModule)},
+    { path: '**', component: Pagina404Component},
   ]}
 ];
 
