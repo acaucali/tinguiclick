@@ -20,7 +20,7 @@ const routes: Routes = [
     { path: 'disputas', loadChildren: () => import('./disputas/disputas.module').then(m =>m.DisputasModule)},
   ]}
 ];
-
+ 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
