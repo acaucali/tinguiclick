@@ -6,6 +6,7 @@ import { Pagina404Component } from './pagina404/pagina404.component';
 
 
 const routes: Routes = [
+  {path: 'login', loadChildren: () => import('./login/login.module').then(m =>m.LoginModule)},
   {path: '', 
   component: MainpageComponent,
   children: [

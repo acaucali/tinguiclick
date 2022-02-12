@@ -5,6 +5,7 @@ import { ModulosModule } from '../modulos/modulos.module';
 
 import { AppRoutingModule } from '../app-routing.module';
 import { Pagina404Component } from './pagina404/pagina404.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -13,6 +14,7 @@ import { Pagina404Component } from './pagina404/pagina404.component';
   declarations: [
     MainpageComponent,
     Pagina404Component,
+
     
   ],
   imports: [
