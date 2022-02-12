@@ -22,7 +22,7 @@ const routes: Routes = [
     { path: '**', component: Pagina404Component},
   ]}
 ];
-
+ 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
