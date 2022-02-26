@@ -63,8 +63,8 @@ export class HeaderComponent implements OnInit {
         /*=====================================
         Separar individualmente los títulos
         ======================================*/
-        let i;
-        for(i in titleList){
+
+        for(let i = 0; i < titleList.length;i++){
 
           /*=====================================
           Tomamos la colección de las sub-categorías filtrando con la lista de títulos
@@ -97,7 +97,8 @@ export class HeaderComponent implements OnInit {
                 arrayTitleName.push(
                   {
                     "titleList": arraySubCategories[j][k].title_list,
-                    "subcategory": arraySubCategories[j][k].name
+                    "subcategory": arraySubCategories[j][k].name,
+                    "url": arraySubCategories[j][k].url
                   }
                 )
               }
@@ -116,11 +117,9 @@ export class HeaderComponent implements OnInit {
 
                 $(`[titleList='${titleList[i]}']`).append(
 
-                  `
-                  <li>
-                    <a href=">${arrayTitleName[j].subcategory}}</a>
-                  </li>
-                  `
+                  `<li>
+                    <a href="products/${arrayTitleName[j].url}">${arrayTitleName[j].subcategory}</a>
+                  </li>`
                 )
               }
             }
