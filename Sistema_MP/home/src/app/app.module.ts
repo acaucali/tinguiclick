@@ -10,6 +10,13 @@ import { HeaderComponent } from './modules/header/header.component';
 import { HeaderMobileComponent } from './modules/header-mobile/header-mobile.component';
 import { NewletterComponent } from './modules/newletter/newletter.component';
 import { FooterComponent } from './modules/footer/footer.component';
+import { HomeComponent } from './page/home/home.component';
+import { ProductsComponent } from './page/products/products.component';
+import { ProductComponent } from './page/product/product.component';
+import { SearchComponent } from './page/search/search.component';
+import { Error404Component } from './page/error404/error404.component';
+import { HomeFeaturesComponent } from './page/home/home-features/home-features.component';
+import { HomeHotTodayComponent } from './page/home/home-hot-today/home-hot-today.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +24,14 @@ import { FooterComponent } from './modules/footer/footer.component';
     HeaderComponent,
     HeaderMobileComponent,
     NewletterComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent,
+    ProductsComponent,
+    ProductComponent,
+    SearchComponent,
+    Error404Component,
+    HomeFeaturesComponent,
+    HomeHotTodayComponent
   ],
   imports: [
     BrowserModule,

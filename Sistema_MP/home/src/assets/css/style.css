@@ -1017,7 +1017,7 @@ a {
 }
 
 a:hover {
-    color: #fcb800;
+    color: #1e71b8;
 }
 
 a,
@@ -1190,7 +1190,7 @@ figure {
 }
 
 .ps-blockquote {
-    border-left: 4px solid #fcb800;
+    border-left: 4px solid #1e71b8;
     padding-left: 60px;
 }
 
@@ -1327,7 +1327,7 @@ body {
 }
 
 .ps-list--social li a:hover {
-    color: #fcb800;
+    color: #1e71b8;
 }
 
 .ps-list--social li a.facebook i {
@@ -1412,8 +1412,8 @@ body {
 }
 
 .ps-list--checked li a:hover:before {
-    background-color: #fcb800;
-    border-color: #fcb800;
+    background-color: #1e71b8;
+    border-color: #1e71b8;
 }
 
 .ps-list--checked li a:hover:after {
@@ -1422,8 +1422,8 @@ body {
 }
 
 .ps-list--checked li.current a:before {
-    background-color: #fcb800;
-    border-color: #fcb800;
+    background-color: #1e71b8;
+    border-color: #1e71b8;
 }
 
 .ps-list--checked li.current a:after {
@@ -1461,7 +1461,7 @@ body {
 }
 
 .ps-list--arrow a:hover {
-    color: #fcb800;
+    color: #1e71b8;
 }
 
 .ps-list--arrow a:hover .circle {
@@ -1850,7 +1850,7 @@ button.ps-btn {
     border: none;
     font-weight: 600;
     border-radius: 4px;
-    background-color: #fcb800;
+    background-color: #1e71b8;
     -webkit-transition: all .4s ease;
     transition: all .4s ease;
     cursor: pointer;
@@ -1868,8 +1868,8 @@ button.ps-btn--curve {
 
 .ps-btn--outline,
 button.ps-btn--outline {
-    border: 2px solid #fcb800;
-    color: #fcb800;
+    border: 2px solid #1e71b8;
+    color: #1e71b8;
     background-color: transparent;
     -ms-box-shadow: none;
     box-shadow: none;
@@ -1879,7 +1879,7 @@ button.ps-btn--outline {
 .ps-btn--outline:hover,
 button.ps-btn--outline:hover {
     color: #ffffff;
-    background-color: #fcb800;
+    background-color: #1e71b8;
 }
 
 .ps-btn--fullwidth,
@@ -1957,7 +1957,7 @@ button.ps-btn:active {
 .ps-btn:active.ps-btn--black,
 button.ps-btn:hover.ps-btn--black,
 button.ps-btn:active.ps-btn--black {
-    background-color: #fcb800;
+    background-color: #1e71b8;
 }
 
 .ps-btn--favorite {
@@ -2116,7 +2116,7 @@ button.ps-btn:active.ps-btn--black {
 .form-control:focus {
     outline: none;
     box-shadow: 0 0 0 #000;
-    border-color: #fcb800;
+    border-color: #1e71b8;
 }
 
 textarea.form-control {
@@ -2192,7 +2192,7 @@ textarea.form-control {
 
 .ps-number span:hover {
     cursor: pointer;
-    background-color: #fcb800;
+    background-color: #1e71b8;
 }
 
 .ps-number span:hover:before {
@@ -3145,7 +3145,7 @@ textarea.form-control {
 }
 
 .ps-post .ps-post__content p a:hover {
-    color: #fcb800;
+    color: #1e71b8;
 }
 
 .ps-post--small-thumbnail {
@@ -3306,7 +3306,7 @@ textarea.form-control {
 }
 
 .ps-post--detail .ps-post__header p a:hover {
-    color: #fcb800;
+    color: #1e71b8;
 }
 
 .ps-post--detail .ps-post__content {
@@ -3365,7 +3365,7 @@ textarea.form-control {
 }
 
 .ps-post--detail .ps-post__tags a:hover {
-    color: #fcb800;
+    color: #1e71b8;
 }
 
 .ps-post--detail .ps-post__social {
@@ -3528,7 +3528,7 @@ textarea.form-control {
 
 .pagination li>a:hover {
     color: #000;
-    background-color: #fcb800;
+    background-color: #1e71b8;
 }
 
 .pagination li.active {
@@ -3536,7 +3536,7 @@ textarea.form-control {
 }
 
 .pagination li.active a {
-    background-color: #fcb800;
+    background-color: #1e71b8;
     color: #000;
 }
 
@@ -16022,7 +16022,7 @@ textarea.form-control {
     z-index: 9999;
     text-align: center;
     border-bottom: 0 none;
-    background-color: #fcb800;
+    background-color: #1e71b8;
     -webkit-transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
@@ -16047,7 +16047,7 @@ textarea.form-control {
 }
 
 .header--mobile .header__extra span {
-    background-color: #fcb800;
+    background-color: #1e71b8;
 }
 
 .header--mobile .header__actions i {
@@ -16129,7 +16129,7 @@ textarea.form-control {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background-color: #fcb800;
+    background-color: #1e71b8;
     -ms-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12);
 }
@@ -16341,7 +16341,7 @@ textarea.form-control {
     position: relative;
     text-align: center;
     padding: 15px 0;
-    background-color: #fcb800;
+    background-color: #1e71b8;
 }
 
 .navigation--sidebar .navigation__header h3 {
@@ -16464,11 +16464,11 @@ textarea.form-control {
 }
 
 .navigation--list .navigation__item.active i {
-    color: #fcb800;
+    color: #1e71b8;
 }
 
 .navigation--list .navigation__item.active span {
-    color: #fcb800;
+    color: #1e71b8;
 }
 
 .navigation--list .navigation__content {
