@@ -729,7 +729,7 @@ export class AppComponent implements OnInit {
           masonry('.ps-masonry');
           productFilterToggle();
           tabs();
-          slickConfig();
+          //slickConfig();
           productLightbox();
           rating();
           backToTop();
