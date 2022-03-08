@@ -16022,7 +16022,7 @@ textarea.form-control {
     z-index: 9999;
     text-align: center;
     border-bottom: 0 none;
-    background-color: #1e71b8;
+    background-color: #3384ff;
     -webkit-transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
@@ -16047,7 +16047,7 @@ textarea.form-control {
 }
 
 .header--mobile .header__extra span {
-    background-color: #1e71b8;
+    background-color: #3384ff;
 }
 
 .header--mobile .header__actions i {
@@ -16129,7 +16129,7 @@ textarea.form-control {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background-color: #1e71b8;
+    background-color: #3384ff;
     -ms-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12);
 }
