@@ -151,7 +151,7 @@ p {
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
-	
+
 	/* Enable Ligatures ================ */
 	-webkit-font-feature-settings: "liga";
 	-moz-font-feature-settings: "liga=1";
@@ -2598,7 +2598,7 @@ p {
 	content: "\e92a";
 }
 .icon-menu:before {
-	content: "\e92b";
+	content: url("../../img/template/Logo-fondo-amarillo_opt.png");
 }
 .icon-list:before {
 	content: "\e92c";
