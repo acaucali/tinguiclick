@@ -123,12 +123,13 @@ export class HomeHotTodayComponent implements OnInit {
 
       filterSales.forEach((sale, index)=>{
 
-        block ++;
+
         /*=======================
         Filtramos hasta 20 ventas
         =======================*/
 
         if(index < 20){
+          block ++;
           this.productsService.getFilterData("name", sale.product)
           .subscribe( resp => {
             let i;
