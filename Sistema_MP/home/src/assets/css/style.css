@@ -17651,3 +17651,8 @@ ul.timeline>li.success:before {
 ul.timeline>li.process:before {
     border: 3px solid #aaa;
 }
+
+.title-header{
+  color: #ffffff;
+  margin: 10px;
+}

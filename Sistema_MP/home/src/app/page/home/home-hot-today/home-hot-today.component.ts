@@ -19,6 +19,9 @@ export class HomeHotTodayComponent implements OnInit {
   products: Array<any> = [];
   render: Boolean = true;
   cargando: Boolean = false;
+  topSales: Array<any> = [];
+  topSalesBlock:Array<any> = [];
+  renderBestSeller: Boolean = true;
   constructor(private productsService: ProductsService,
               private salesService: SalesService) { }
 
@@ -116,8 +119,11 @@ export class HomeHotTodayComponent implements OnInit {
       Filtramos la data de productos buscando coincidencias con las ventas
       ==================================================================*/
 
+      let block = 0;
+
       filterSales.forEach((sale, index)=>{
 
+        block ++;
         /*=======================
         Filtramos hasta 20 ventas
         =======================*/
@@ -125,10 +131,22 @@ export class HomeHotTodayComponent implements OnInit {
         if(index < 20){
           this.productsService.getFilterData("name", sale.product)
           .subscribe( resp => {
-            console.log("resp", resp);
+            let i;
+            for(i in resp){
+              this.topSales.push(resp[i])
+            }
+
           })
         }
       })
+
+      /*===============================================================
+      Enviamos el máximo de bloques para mostrar 4 productos por bloque
+      ===============================================================*/
+
+      for(let i = 0; i < Math.round(block/4);i++){
+        this.topSalesBlock.push(i);
+      }
     })
   }
 
@@ -304,6 +322,113 @@ export class HomeHotTodayComponent implements OnInit {
       ===============================================*/
 
       ProgressBar.fnc();
+    }
+  }
+
+  /*=============================================================
+  Función que nos avisa cuando finaliza el renderizado de Angular
+  =============================================================*/
+
+  callbackBestSeller(topSales) {
+    if (this.renderBestSeller) {
+      this.renderBestSeller = false;
+      /*====================================================
+      Capturamos la cantidad de bloques que existe en el DOM
+      ====================================================*/
+      let topSaleBlock = $(".topSaleBlock");
+      let top20Array = [];
+
+      /*=============================================================
+      Ejecutamos un SetTimeOut - por cada bloque un segundo de espera
+      =============================================================*/
+
+      setTimeout(function(){
+        /*==================
+        Removemos el preload
+        ==================*/
+        $(".preload").remove();
+        /*========================================
+        Hacemos un ciclo por la cantidad de bloques
+        ========================================*/
+        for(let i = 0; i <topSaleBlock.length;i++){
+          /*=============================================
+          Agrupamos la cantidad de 4 productos por bloque
+          =============================================*/
+          top20Array.push(
+            topSales.slice(i*topSaleBlock.length, (i*topSaleBlock.length)+topSaleBlock.length)
+          )
+          /*================================================
+          Hacemos un recorrido por el nuevo array de objetos
+          ================================================*/
+          let f;
+          for(f in top20Array[i]){
+            /*===================================================
+            Definimos si el precio del producto tiene oferta o no
+            ===================================================*/
+            let price;
+            let type;
+            let value;
+            let offer;
+            if(top20Array[i][f].offer != ""){
+
+              type = JSON.parse(top20Array[i][f].offer)[0];
+              value = JSON.parse(top20Array[i][f].offer)[1];
+
+              if(type == "Disccount"){
+                offer = (top20Array[i][f].price * value/100).toFixed(2)
+              }
+              if(type == "Fixed"){
+                offer = (top20Array[i][f].price - value).toFixed(2)
+              }
+              price = `<p class="ps-product__price sale">$${offer} <del>$${top20Array[i][f].price}</del></p>`;
+
+            }else{
+              price = `<p class="ps-product__price">$${top20Array[i][f].price}</p>`;
+            }
+            $(topSaleBlock[i]).append(`
+              <div class="ps-product--horizontal">
+
+                <div class="ps-product__thumbnail">
+                  <a href="product/${top20Array[i][f].url}">
+                    <img src="assets/img/products/${top20Array[i][f].category}/${top20Array[i][f].image}">
+                  </a>
+                </div>
+
+                <div class="ps-product__content">
+
+                  <a class="ps-product__title" href="${top20Array[i][f].url}">${top20Array[i][f].name}</a>
+
+                  <div class="ps-product__rating">
+
+                    <select class="ps-rating" data-read-only="true">
+                      <option value="1">1</option>
+                      <option value="1">2</option>
+                      <option value="1">3</option>
+                      <option value="1">4</option>
+                      <option value="2">5</option>
+                    </select>
+
+                    <span>01</span>
+
+                  </div>
+
+                  ${price}
+
+                </div>
+
+              </div>
+            `)
+          }
+
+        }
+
+        /*===========================================
+        Modificamos el estilo del plugin OWL Carousel
+        ===========================================*/
+        $(".owl-dots").css({"bottom":"0"})
+        $(".owl-dot").css({"background":"#ddd"})
+      }, topSaleBlock.length*1000)
+
     }
   }
 }

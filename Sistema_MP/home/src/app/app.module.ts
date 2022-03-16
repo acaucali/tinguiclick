@@ -17,6 +17,8 @@ import { SearchComponent } from './page/search/search.component';
 import { Error404Component } from './page/error404/error404.component';
 import { HomeFeaturesComponent } from './page/home/home-features/home-features.component';
 import { HomeHotTodayComponent } from './page/home/home-hot-today/home-hot-today.component';
+import { HomeTopCategoriesComponent } from './page/home/home-top-categories/home-top-categories.component';
+import { HomeShowcaseComponent } from './page/home/home-showcase/home-showcase.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { HomeHotTodayComponent } from './page/home/home-hot-today/home-hot-today
     SearchComponent,
     Error404Component,
     HomeFeaturesComponent,
-    HomeHotTodayComponent
+    HomeHotTodayComponent,
+    HomeTopCategoriesComponent,
+    HomeShowcaseComponent
   ],
   imports: [
     BrowserModule,
