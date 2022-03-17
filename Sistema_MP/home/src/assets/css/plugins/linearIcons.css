@@ -2598,7 +2598,8 @@ p {
 	content: "\e92a";
 }
 .icon-menu:before {
-	content: url("../../img/template/Logo-fondo-amarillo_opt.png");
+	content: url("../../img/template/Logo-fondo-amarillo.png");
+  zoom: 5%
 }
 .icon-list:before {
 	content: "\e92c";
