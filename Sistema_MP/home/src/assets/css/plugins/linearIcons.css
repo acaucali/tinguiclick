@@ -2599,7 +2599,7 @@ p {
 }
 .icon-menu:before {
 	content: url("../../img/template/Logo-fondo-amarillo.png");
-  zoom: 5%
+  zoom: 5%;
 }
 .icon-list:before {
 	content: "\e92c";
