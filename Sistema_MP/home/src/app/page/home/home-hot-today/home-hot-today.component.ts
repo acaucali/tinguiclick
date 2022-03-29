@@ -39,8 +39,8 @@ export class HomeHotTodayComponent implements OnInit {
     this.productsService.getData().subscribe((resp) => {
 
       /*=====================================
-          Recorremos cada producto para separar las ofertas y el stock
-          ======================================*/
+      Recorremos cada producto para separar las ofertas y el stock
+      ======================================*/
       let i;
 
       for (i in resp) {
@@ -376,10 +376,10 @@ export class HomeHotTodayComponent implements OnInit {
               value = JSON.parse(top20Array[i][f].offer)[1];
 
               if(type == "Disccount"){
-                offer = (top20Array[i][f].price * value/100).toFixed(2)
+                offer = (top20Array[i][f].price - (top20Array[i][f].price * value/100)).toFixed(2)
               }
               if(type == "Fixed"){
-                offer = (top20Array[i][f].price - value).toFixed(2)
+                offer = value
               }
               price = `<p class="ps-product__price sale">$${offer} <del>$${top20Array[i][f].price}</del></p>`;
 
