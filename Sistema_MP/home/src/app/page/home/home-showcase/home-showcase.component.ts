@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Path } from '../../../config';
-import { Rating } from '../../../functions';
+import { OwlCarouselConfig, Rating } from '../../../functions';
+
 
 declare var jQuery: any;
 declare var $: any;
@@ -63,18 +64,19 @@ export class HomeShowcaseComponent implements OnInit {
   /*=============================================================
   Función que nos avisa cuando finaliza el renderizado de Angular
   =============================================================*/
-  callback() {
+  callback(indexes) {
     if (this.render) {
       this.render = false;
 
       let arraySubCategories = [];
       let arrayProducts = [];
+      let preloadSV = 0;
 
       /*====================
       Separar las categorías
       ====================*/
 
-      this.categories.forEach(category => {
+      this.categories.forEach((category,index) => {
         /*================================================================================
         Tomamos la colección de las sub-categorías filtrando con los nombres de categorías
         ================================================================================*/
@@ -245,6 +247,41 @@ export class HomeShowcaseComponent implements OnInit {
                 Ejecutar funciones globales con respecto a las Reseñas
                 ====================================================*/
                 Rating.fnc();
+
+                /*============================================
+                Imprimimos los productos en el Vertical Slider
+                ============================================*/
+                $(`[category-sl='${arrayProducts[i].category}']`).append(`
+                  <a href="product/${arrayProducts[i].url}">
+
+                  <img src="assets/img/products/${arrayProducts[i].category}/vertical/${arrayProducts[i].vertical_slider}" alt="">
+
+                  </a>
+                `)
+
+                /*==================================================
+                Ejecutar funciones globales con respecto al carrusel
+                ==================================================*/
+                preloadSV++;
+                if(preloadSV== (indexes+1)*6){
+                  $(`[category-sl]`).addClass('ps-carousel--product-box')
+                  $(`[category-sl]`).addClass('owl-slider')
+                  $(`[category-sl]`).owlCarousel({
+                    items: 1,
+                    autoplay: true,
+                    autoplayTimeout: 7000,
+                    nav:true,
+                    loop:true,
+                    margin:0,
+                    dots:true,
+                    navSpeed:500,
+                    dotsSpeed:500,
+                    dragEndSpeed:500,
+                    navText:["<i class='icon-chevron-left'></i>", "<i class='icon-chevron-right'></i>"]
+                  }
+                  );
+                }
+
               }
             }
           })
